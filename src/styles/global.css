@@ -20,6 +20,10 @@ body {
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+  /* Safety net: never allow horizontal scrolling. `clip` (not `hidden`) does NOT
+     create a scroll container, so the sticky header keeps working. Inner
+     scrollers (e.g. the mobile product filter pills) are unaffected. */
+  overflow-x: clip;
 }
 
 button {
