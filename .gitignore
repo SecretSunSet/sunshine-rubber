@@ -1,0 +1,36 @@
+# build output
+dist/
+.vercel/
+.output/
+.firebase/
+firebase-debug.log*
+
+# astro
+.astro/
+
+# dependencies
+node_modules/
+
+# env
+.env
+.env.production
+.env.development
+functions/.env
+functions/.env.*
+functions/.secret.local
+!.env.example
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# local QA screenshots
+qa-shots/
+
+# os / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

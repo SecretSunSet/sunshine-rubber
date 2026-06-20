@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box}
+  body{margin:0}
+  button{font-family:inherit}
+  input,textarea{font-family:inherit}
+  ::selection{background:#E8730F;color:#fff}
+  @keyframes scrIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+  @keyframes sunSpin{to{transform:rotate(360deg)}}
+  @keyframes sunSpinRev{to{transform:rotate(-360deg)}}
+  @keyframes sunPulse{0%,100%{opacity:.85;transform:translate(-50%,-50%) scale(1)}50%{opacity:1;transform:translate(-50%,-50%) scale(1.08)}}
+  @keyframes sunGlow{0%,100%{opacity:.85;transform:scale(1)}50%{opacity:1;transform:scale(1.05)}}
+  @keyframes drawerIn{from{transform:translateX(100%)}to{transform:translateX(0)}}
+  @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+  image-slot[id^="client-logo"]::part(frame){background:none}
+  image-slot[id^="client-logo"]::part(ring){display:none}
+</style>
+<script src="./image-slot.js"></script>
+</helmet>
+
+<div style="font-family:'Hanken Grotesk',sans-serif;color:#1B1916;background:#FAF8F3;min-height:100vh;width:100%;max-width:440px;margin:0 auto;position:relative;overflow-x:clip;padding-bottom:66px">
+
+  <!-- ===== HEADER ===== -->
+  <header style="position:sticky;top:0;z-index:50;background:rgba(250,248,243,.92);backdrop-filter:blur(12px);border-bottom:1px solid #E6E0D4">
+    <div style="padding:0 18px;height:64px;display:flex;align-items:center;justify-content:center">
+      <button onClick="{{ goHome }}" style="display:flex;align-items:center;gap:10px;background:none;border:none;cursor:pointer;padding:0">
+        <img src="images/sunshine-logo.svg" alt="Sunshine Rubber logo" width="42" height="42" style="width:42px;height:42px;object-fit:contain;display:block">
+        <span style="display:flex;flex-direction:column;align-items:flex-start;line-height:1">
+          <span style="font:800 15px/1 Archivo;letter-spacing:.01em;color:#1B1916">SUNSHINE RUBBER</span>
+          <span style="font:600 8px/1.4 'Hanken Grotesk';letter-spacing:.22em;color:#E0750C;margin-top:3px">TECH RESOURCES, CO.</span>
+        </span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ===================== HOME ===================== -->
+  <sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
+  <main>
+    <!-- HERO -->
+    <section style="background:#FAF8F3;padding:34px 18px 40px;position:relative;overflow:hidden">
+      <div aria-hidden="true" style="position:absolute;top:-16%;left:-16%;width:440px;height:440px;border-radius:50%;background:radial-gradient(circle,rgba(255,196,74,.5) 0%,rgba(255,196,74,0) 70%);filter:blur(6px);pointer-events:none;animation:sunGlow 6s ease-in-out infinite"></div>
+      <div aria-hidden="true" style="position:absolute;inset:0;pointer-events:none;background:repeating-conic-gradient(from 110deg at 14% 7%,rgba(255,221,140,.55) 0deg 3deg,transparent 3deg 13deg);-webkit-mask:radial-gradient(160% 160% at 14% 7%,#000 0%,rgba(0,0,0,.5) 30%,transparent 66%);mask:radial-gradient(160% 160% at 14% 7%,#000 0%,rgba(0,0,0,.5) 30%,transparent 66%);mix-blend-mode:soft-light;transform-origin:14% 7%;animation:sunSpin 140s linear infinite"></div>
+      <div aria-hidden="true" style="position:absolute;inset:0;pointer-events:none;background:repeating-conic-gradient(from 113deg at 14% 7%,rgba(255,255,255,.5) 0deg 1.4deg,transparent 1.4deg 9deg);-webkit-mask:radial-gradient(140% 140% at 14% 7%,#000 0%,transparent 56%);mask:radial-gradient(140% 140% at 14% 7%,#000 0%,transparent 56%);transform-origin:14% 7%;animation:sunSpinRev 90s linear infinite"></div>
+      <div aria-hidden="true" style="position:absolute;left:14%;top:7%;width:150px;height:150px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,250,.95) 0%,rgba(255,228,150,.7) 38%,rgba(255,210,110,0) 72%);filter:blur(2px);pointer-events:none;animation:sunPulse 6s ease-in-out infinite"></div>
+      <div style="position:relative">
+      <div style="display:inline-flex;align-items:center;gap:8px;border:1px solid #E0D8C7;border-radius:999px;padding:6px 12px">
+        <span style="width:6px;height:6px;border-radius:50%;background:{{ accent }}"></span>
+        <span style="font:600 9.5px/1 'Hanken Grotesk';letter-spacing:.12em;color:#8A8170;text-transform:uppercase">Industrial Rubber · Since 1991</span>
+      </div>
+      <h1 style="font:800 36px/1.06 Archivo;color:#1B1916;letter-spacing:-.025em;margin:18px 0 0">Engineered rubber for the structures that move.</h1>
+      <p style="font:400 15.5px/1.6 'Hanken Grotesk';color:#5A5448;margin:16px 0 0">High-quality molded and extruded rubber, bridge bearings, expansion joints and road-safety systems — trusted on the Philippines' major infrastructure for over three decades.</p>
+      <div style="display:flex;flex-direction:column;gap:11px;margin-top:24px">
+        <button onClick="{{ goProducts }}" style="background:{{ accent }};color:#fff;border:none;cursor:pointer;font:700 15px/1 'Hanken Grotesk';padding:16px;border-radius:999px">Explore Products</button>
+        <button onClick="{{ goContact }}" style="background:none;color:#1B1916;border:1px solid #1B1916;cursor:pointer;font:700 15px/1 'Hanken Grotesk';padding:16px;border-radius:999px">Request a Quote</button>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px 16px;margin-top:34px;text-align:center">
+        <div style="background:#fff;border:1px solid #E6E0D4;border-radius:14px;padding:18px 14px"><div style="font:800 28px/1 Archivo;color:#1B1916">1991</div><div style="font:500 12.5px/1.4 'Hanken Grotesk';color:#8A8170;margin-top:5px">Established</div></div>
+        <div style="background:#fff;border:1px solid #E6E0D4;border-radius:14px;padding:18px 14px"><div style="font:800 28px/1 Archivo;color:#1B1916">35<span style="color:{{ accent }}">+</span></div><div style="font:500 12.5px/1.4 'Hanken Grotesk';color:#8A8170;margin-top:5px">Years operating</div></div>
+        <div style="background:#fff;border:1px solid #E6E0D4;border-radius:14px;padding:18px 14px"><div style="font:800 28px/1 Archivo;color:#1B1916">60<span style="color:{{ accent }}">+</span></div><div style="font:500 12.5px/1.4 'Hanken Grotesk';color:#8A8170;margin-top:5px">Corporate clients</div></div>
+        <div style="background:#fff;border:1px solid #E6E0D4;border-radius:14px;padding:18px 14px"><div style="font:800 28px/1 Archivo;color:#1B1916">15<span style="color:{{ accent }}">+</span></div><div style="font:500 12.5px/1.4 'Hanken Grotesk';color:#8A8170;margin-top:5px">Product lines</div></div>
+      </div>
+      <!-- product preview tiles -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:26px">
+        <div style="grid-column:span 2;height:170px;border-radius:16px;overflow:hidden;border:1px solid #E0D8C7;position:relative;display:flex;align-items:flex-end;padding:16px;background:#EFEAE0">
+          <img src="images/products/bearing-pad.png" alt="Bearing pad" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+          <span style="position:relative;font:600 10px/1 'Hanken Grotesk';letter-spacing:.1em;color:#fff;text-transform:uppercase;background:rgba(27,25,22,.82);padding:6px 10px;border-radius:6px">Bearing Pad</span>
+        </div>
+        <div style="height:130px;border-radius:16px;overflow:hidden;border:1px solid #E0D8C7;position:relative;display:flex;align-items:flex-end;padding:14px;background:#EFEAE0">
+          <img src="images/products/expansion-joint.png" alt="Expansion joint" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+          <span style="position:relative;font:600 9px/1 'Hanken Grotesk';letter-spacing:.08em;color:#fff;text-transform:uppercase;background:rgba(27,25,22,.82);padding:5px 9px;border-radius:6px">Expansion Joint</span>
+        </div>
+        <div style="height:130px;border-radius:16px;background:#FDB813;display:flex;flex-direction:column;justify-content:center;padding:16px">
+          <span style="font:700 12.5px/1.3 'Hanken Grotesk';color:#1B1916">Built to AASHTO spec</span>
+          <span style="font:400 11px/1.45 'Hanken Grotesk';color:#7A5808;margin-top:6px">Guardrails, signage & joints to engineering-grade standards.</span>
+        </div>
+      </div>
+      </div>
+    </section>
+
+    <!-- client logo wall -->
+    <section style="background:#fff;border-top:1px solid #E6E0D4;border-bottom:1px solid #E6E0D4;padding:30px 18px">
+      <span style="font:600 10.5px/1.4 'Hanken Grotesk';letter-spacing:.14em;color:#A99F8C;text-transform:uppercase;text-align:center;display:block;margin-bottom:22px">Trusted by leading contractors &amp; developers</span>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px 12px">
+        <div style="display:flex;align-items:center;justify-content:center;height:54px;min-width:0;padding:8px"><image-slot id="client-logo-1" shape="rect" fit="contain" src="images/clients/shimizu.png" placeholder="Shimizu" style="width:100%;min-width:0;height:100%;filter:grayscale(1);background:none;border:none"></image-slot></div>
+        <div style="display:flex;align-items:center;justify-content:center;height:54px;min-width:0;padding:8px"><image-slot id="client-logo-2" shape="rect" fit="contain" src="images/clients/eei.png" placeholder="EEI" style="width:100%;min-width:0;height:100%;filter:grayscale(1);background:none;border:none"></image-slot></div>
+        <div style="display:flex;align-items:center;justify-content:center;height:54px;min-width:0;padding:8px"><image-slot id="client-logo-3" shape="rect" fit="contain" src="images/clients/megawide.png" placeholder="Megawide" style="width:100%;min-width:0;height:100%;filter:grayscale(1);background:none;border:none"></image-slot></div>
+        <div style="display:flex;align-items:center;justify-content:center;height:54px;min-width:0;padding:8px"><image-slot id="client-logo-4" shape="rect" fit="contain" src="images/clients/dmci.png" placeholder="DMCI" style="width:100%;min-width:0;height:100%;filter:grayscale(1);background:none;border:none"></image-slot></div>
+        <div style="display:flex;align-items:center;justify-content:center;height:54px;min-width:0;padding:8px"><image-slot id="client-logo-5" shape="rect" fit="contain" src="images/clients/hanjin.png" placeholder="Hanjin" style="width:100%;min-width:0;height:100%;filter:grayscale(1);background:none;border:none"></image-slot></div>
+        <div style="display:flex;align-items:center;justify-content:center;height:54px;min-width:0;padding:8px"><image-slot id="client-logo-6" shape="rect" fit="contain" src="images/clients/crbc.png" placeholder="CRBC" style="width:100%;min-width:0;height:100%;filter:grayscale(1);background:none;border:none"></image-slot></div>
+      </div>
+    </section>
+
+    <!-- category preview -->
+    <section style="padding:46px 18px">
+      <span style="font:600 11px/1 'Hanken Grotesk';letter-spacing:.14em;color:{{ accent }};text-transform:uppercase">What we make</span>
+      <h2 style="font:800 28px/1.1 Archivo;color:#1B1916;letter-spacing:-.02em;margin:12px 0 24px">Three lines of products</h2>
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <sc-for list="{{ catCards }}" as="c" hint-placeholder-count="3">
+          <button onClick="{{ c.onClick }}" style="text-align:left;background:#fff;border:1px solid #E6E0D4;border-radius:16px;padding:22px;cursor:pointer;display:flex;flex-direction:column;gap:9px">
+            <span style="font:800 18px/1 Archivo;color:{{ accent }}">{{ c.num }}</span>
+            <h3 style="font:700 19px/1.2 Archivo;color:#1B1916;margin:0">{{ c.title }}</h3>
+            <p style="font:400 14px/1.55 'Hanken Grotesk';color:#756E62;margin:0">{{ c.desc }}</p>
+          </button>
+        </sc-for>
+      </div>
+    </section>
+
+    <!-- why us -->
+    <section style="background:#1B1916;color:#fff;padding:46px 18px">
+      <span style="font:600 11px/1 'Hanken Grotesk';letter-spacing:.14em;color:#FDB813;text-transform:uppercase">Why Sunshine Rubber</span>
+      <h2 style="font:800 28px/1.12 Archivo;letter-spacing:-.02em;margin:12px 0 30px">Quality and prompt delivery, second to none.</h2>
+      <div style="display:flex;flex-direction:column;gap:24px">
+        <sc-for list="{{ features }}" as="f" hint-placeholder-count="4">
+          <div style="border-top:2px solid {{ accent }};padding-top:18px">
+            <h3 style="font:700 17px/1.25 Archivo;color:#fff;margin:0">{{ f.title }}</h3>
+            <p style="font:400 14px/1.55 'Hanken Grotesk';color:#B0A99C;margin:9px 0 0">{{ f.desc }}</p>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+
+    <!-- CTA band -->
+    <section style="padding:44px 18px">
+      <div style="background:#FDB813;border-radius:20px;padding:32px 26px">
+        <h2 style="font:800 25px/1.14 Archivo;color:#1B1916;letter-spacing:-.02em;margin:0">Need a custom rubber or structural component?</h2>
+        <p style="font:400 15px/1.55 'Hanken Grotesk';color:#3A2E12;margin:12px 0 22px">Send us your specifications — we mold, extrude and fabricate to requirement.</p>
+        <button onClick="{{ goContact }}" style="background:#1B1916;color:#fff;border:none;cursor:pointer;font:700 15px/1 'Hanken Grotesk';padding:16px 30px;border-radius:999px;width:100%">Get in touch</button>
+      </div>
+    </section>
+  </main>
+  </sc-if>
+
+  <!-- ===================== ABOUT ===================== -->
+  <sc-if value="{{ isAbout }}" hint-placeholder-val="{{ false }}">
+  <main>
+    <section style="position:relative;overflow:hidden;border-bottom:1px solid #E6E0D4;min-height:330px;display:flex;flex-direction:column;justify-content:flex-end;padding:30px 18px 28px">
+      <img src="images/about-factory.png" alt="Factory floor" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+      <div aria-hidden="true" style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,18,16,.12) 0%,rgba(20,18,16,.34) 44%,rgba(20,18,16,.8) 100%)"></div>
+      <div aria-hidden="true" style="position:absolute;top:-12%;left:-12%;width:340px;height:340px;border-radius:50%;background:radial-gradient(circle,rgba(255,196,74,.6) 0%,rgba(255,196,74,0) 70%);mix-blend-mode:screen;filter:blur(6px);pointer-events:none"></div>
+      <div aria-hidden="true" style="position:absolute;inset:0;pointer-events:none;background:repeating-conic-gradient(from 110deg at 14% 8%,rgba(255,221,140,.5) 0deg 3deg,transparent 3deg 13deg);-webkit-mask:radial-gradient(120% 120% at 14% 8%,#000 0%,rgba(0,0,0,.5) 28%,transparent 62%);mask:radial-gradient(120% 120% at 14% 8%,#000 0%,rgba(0,0,0,.5) 28%,transparent 62%);mix-blend-mode:screen"></div>
+      <div aria-hidden="true" style="position:absolute;left:14%;top:8%;transform:translate(-50%,-50%);width:130px;height:130px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,250,.9) 0%,rgba(255,228,150,.65) 38%,rgba(255,210,110,0) 72%);mix-blend-mode:screen;filter:blur(2px);pointer-events:none"></div>
+      <span style="font:700 11px/1 'Hanken Grotesk';letter-spacing:.14em;color:#FFD27A;text-transform:uppercase;position:relative;text-shadow:0 1px 8px rgba(0,0,0,.6),0 0 2px rgba(0,0,0,.5)">About the company</span>
+      <h1 style="font:800 31px/1.1 Archivo;color:#fff;letter-spacing:-.025em;margin:12px 0 0;position:relative;text-shadow:0 2px 18px rgba(0,0,0,.4)">Three decades of molded and extruded rubber for Philippine infrastructure.</h1>
+    </section>
+    <section style="padding:40px 18px">
+      <p style="font:400 15.5px/1.7 'Hanken Grotesk';color:#3F3A30;margin:0">Sunshine Rubber Tech Resources Co. was incorporated on February 14, 1991 with an initial authorized capitalization of ₱100,000. Actual operations began in May 1992 in Dalandanan, Valenzuela City, with an initial capacity of two metric tons of raw rubber and chemicals per month for the production of high-quality molded and extruded rubber products.</p>
+      <p style="font:400 15.5px/1.7 'Hanken Grotesk';color:#3F3A30;margin:18px 0 32px">Annual output grew to over a thousand different molded and extruded rubber products — gaskets, steering covers, bushings, laboratory stoppers, furniture footings, impact rollers, door and window strips, port bumpers, expansion joints and bearing pads. By 1994, capitalization was increased to ₱5 million to add high-end machinery.</p>
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <sc-for list="{{ timeline }}" as="t" hint-placeholder-count="3">
+          <div style="display:flex;gap:18px;background:#fff;border:1px solid #E6E0D4;border-radius:14px;padding:20px">
+            <div style="font:800 22px/1 Archivo;color:{{ accent }};min-width:52px">{{ t.year }}</div>
+            <div><h3 style="font:700 17px/1.2 Archivo;color:#1B1916;margin:0">{{ t.title }}</h3><p style="font:400 14px/1.55 'Hanken Grotesk';color:#756E62;margin:7px 0 0">{{ t.desc }}</p></div>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+    <!-- vision / mission -->
+    <section style="background:#1B1916;color:#fff;padding:44px 18px">
+      <span style="font:600 11px/1 'Hanken Grotesk';letter-spacing:.14em;color:#FDB813;text-transform:uppercase">Our vision</span>
+      <p style="font:600 21px/1.4 Archivo;color:#fff;margin:14px 0 32px">"To be recognized by our customers as the company whose service standards exceed those of our competitors."</p>
+      <span style="font:600 11px/1 'Hanken Grotesk';letter-spacing:.14em;color:#FDB813;text-transform:uppercase">Our mission</span>
+      <div style="display:flex;flex-direction:column;gap:16px;margin-top:16px">
+        <sc-for list="{{ missions }}" as="m" hint-placeholder-count="3">
+          <div style="display:flex;gap:14px;border-top:1px solid #34302A;padding-top:16px">
+            <span style="width:7px;height:7px;border-radius:50%;background:{{ accent }};margin-top:7px;flex:none"></span>
+            <p style="font:400 15px/1.55 'Hanken Grotesk';color:#CFC9BC;margin:0">{{ m }}</p>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+    <!-- machinery -->
+    <section style="padding:42px 18px">
+      <span style="font:600 11px/1 'Hanken Grotesk';letter-spacing:.14em;color:{{ accent }};text-transform:uppercase">In-house capability</span>
+      <h2 style="font:800 26px/1.1 Archivo;color:#1B1916;letter-spacing:-.02em;margin:12px 0 22px">Our machinery</h2>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+        <sc-for list="{{ machinery }}" as="m" hint-placeholder-count="12">
+          <div style="background:#fff;border:1px solid #E6E0D4;border-radius:12px;padding:15px 16px;font:600 13.5px/1.35 'Hanken Grotesk';color:#3F3A30">{{ m }}</div>
+        </sc-for>
+      </div>
+    </section>
+  </main>
+  </sc-if>
+
+  <!-- ===================== PRODUCTS ===================== -->
+  <sc-if value="{{ isProducts }}" hint-placeholder-val="{{ false }}">
+  <main>
+    <section style="background:radial-gradient(120% 140% at 12% 30%,#FFE7B0 0%,#FFF3D6 26%,#FFFBF2 52%,#FFFFFF 78%);border-bottom:1px solid #E6E0D4;padding:38px 18px 0;position:relative;overflow:hidden">
+      <div aria-hidden="true" style="position:absolute;top:-12%;left:-12%;width:340px;height:340px;border-radius:50%;background:radial-gradient(circle,rgba(255,196,74,.55) 0%,rgba(255,196,74,0) 70%);filter:blur(6px);pointer-events:none"></div>
+      <div aria-hidden="true" style="position:absolute;inset:0;pointer-events:none;background:repeating-conic-gradient(from 110deg at 14% 8%,rgba(255,221,140,.55) 0deg 3deg,transparent 3deg 13deg);-webkit-mask:radial-gradient(120% 120% at 14% 8%,#000 0%,rgba(0,0,0,.5) 28%,transparent 62%);mask:radial-gradient(120% 120% at 14% 8%,#000 0%,rgba(0,0,0,.5) 28%,transparent 62%);mix-blend-mode:soft-light"></div>
+      <div aria-hidden="true" style="position:absolute;inset:0;pointer-events:none;background:repeating-conic-gradient(from 113deg at 14% 8%,rgba(255,255,255,.5) 0deg 1.4deg,transparent 1.4deg 9deg);-webkit-mask:radial-gradient(100% 100% at 14% 8%,#000 0%,transparent 52%);mask:radial-gradient(100% 100% at 14% 8%,#000 0%,transparent 52%)"></div>
+      <div aria-hidden="true" style="position:absolute;left:14%;top:8%;transform:translate(-50%,-50%);width:130px;height:130px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,250,.95) 0%,rgba(255,228,150,.7) 38%,rgba(255,210,110,0) 72%);filter:blur(2px);pointer-events:none"></div>
+      <span style="font:600 11px/1 'Hanken Grotesk';letter-spacing:.14em;color:{{ accent }};text-transform:uppercase;position:relative">Our products</span>
+      <h1 style="font:800 32px/1.08 Archivo;color:#1B1916;letter-spacing:-.025em;margin:12px 0 0;position:relative">Molded, extruded &amp; structural products</h1>
+      <p style="font:400 15px/1.6 'Hanken Grotesk';color:#5A5448;margin:14px 0 0;position:relative">From bridge bearings and expansion joints to gaskets, column guards and road-safety signage — manufactured to specification.</p>
+      <img src="images/banners/products-cutout.png" alt="Product range" style="width:100%;max-width:300px;height:auto;object-fit:contain;display:block;margin:22px auto 0;position:relative">
+    </section>
+    <section style="padding:24px 18px 56px">
+      <div style="display:flex;gap:9px;overflow-x:auto;margin:0 -18px 26px;padding:0 18px;-webkit-overflow-scrolling:touch">
+        <sc-for list="{{ catButtons }}" as="c" hint-placeholder-count="4">
+          <button onClick="{{ c.onClick }}" style="{{ c.style }}">{{ c.label }}</button>
+        </sc-for>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+        <sc-for list="{{ products }}" as="p" hint-placeholder-count="9">
+          <div style="background:#fff;border:1px solid #E6E0D4;border-radius:14px;overflow:hidden;display:flex;flex-direction:column">
+            <div style="aspect-ratio:4/3;position:relative;background:#EFEAE0">
+              <img src="{{ p.img }}" alt="{{ p.name }}" style="width:100%;height:100%;object-fit:cover;display:block">
+              <span style="position:absolute;top:9px;left:9px;background:#1B1916;color:#fff;font:600 8px/1 'Hanken Grotesk';letter-spacing:.08em;text-transform:uppercase;padding:5px 8px;border-radius:999px">{{ p.tag }}</span>
+            </div>
+            <div style="padding:14px 15px 16px;display:flex;flex-direction:column;gap:6px;flex:1">
+              <h3 style="font:700 15px/1.2 Archivo;color:#1B1916;margin:0">{{ p.name }}</h3>
+              <p style="font:400 12.5px/1.5 'Hanken Grotesk';color:#756E62;margin:0">{{ p.blurb }}</p>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+      <p style="font:400 12.5px/1.6 'Hanken Grotesk';color:#A99F8C;margin:28px 0 0">Guardrails and signage are manufactured to AASHTO specification on engineering-grade aluminum or G.I. sheet panels with hot-dipped galvanized posts. Custom molded and extruded items are produced to client requirement.</p>
+    </section>
+  </main>
+  </sc-if>
+
+  <!-- ===================== CLIENTS ===================== -->
+  <sc-if value="{{ isClients }}" hint-placeholder-val="{{ false }}">
+  <main>
+    <section style="position:relative;overflow:hidden;border-bottom:1px solid #E6E0D4;min-height:330px;display:flex;flex-direction:column;justify-content:flex-end;padding:30px 18px 28px">
+      <img src="images/banners/clients-banner.png" alt="Infrastructure" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+      <div aria-hidden="true" style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,18,16,.12) 0%,rgba(20,18,16,.34) 44%,rgba(20,18,16,.8) 100%)"></div>
+      <div aria-hidden="true" style="position:absolute;top:-12%;left:-12%;width:340px;height:340px;border-radius:50%;background:radial-gradient(circle,rgba(255,196,74,.6) 0%,rgba(255,196,74,0) 70%);mix-blend-mode:screen;filter:blur(6px);pointer-events:none"></div>
+      <div aria-hidden="true" style="position:absolute;inset:0;pointer-events:none;background:repeating-conic-gradient(from 110deg at 14% 8%,rgba(255,221,140,.5) 0deg 3deg,transparent 3deg 13deg);-webkit-mask:radial-gradient(120% 120% at 14% 8%,#000 0%,rgba(0,0,0,.5) 28%,transparent 62%);mask:radial-gradient(120% 120% at 14% 8%,#000 0%,rgba(0,0,0,.5) 28%,transparent 62%);mix-blend-mode:screen"></div>
+      <div aria-hidden="true" style="position:absolute;left:14%;top:8%;transform:translate(-50%,-50%);width:130px;height:130px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,250,.9) 0%,rgba(255,228,150,.65) 38%,rgba(255,210,110,0) 72%);mix-blend-mode:screen;filter:blur(2px);pointer-events:none"></div>
+      <span style="font:700 11px/1 'Hanken Grotesk';letter-spacing:.14em;color:#FFD27A;text-transform:uppercase;position:relative;text-shadow:0 1px 8px rgba(0,0,0,.6),0 0 2px rgba(0,0,0,.5)">Clients &amp; projects</span>
+      <h1 style="font:800 31px/1.1 Archivo;color:#fff;letter-spacing:-.025em;margin:12px 0 0;position:relative;text-shadow:0 2px 18px rgba(0,0,0,.4)">Trusted across major infrastructure</h1>
+      <p style="font:400 15px/1.6 'Hanken Grotesk';color:rgba(255,255,255,.9);margin:14px 0 0;position:relative;text-shadow:0 1px 12px rgba(0,0,0,.35)">Our products are specified by leading contractors, developers and government projects nationwide.</p>
+    </section>
+    <section style="padding:40px 18px 24px">
+      <h2 style="font:800 24px/1.1 Archivo;color:#1B1916;letter-spacing:-.02em;margin:0 0 22px">Featured projects</h2>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+        <sc-for list="{{ projects }}" as="p" hint-placeholder-count="6">
+          <div style="border-radius:14px;overflow:hidden;border:1px solid #E6E0D4;background:#fff">
+            <div style="aspect-ratio:16/11;overflow:hidden;background:#EFEAE0"><img src="{{ p.img }}" alt="{{ p.name }}" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+            <div style="padding:14px 14px 15px"><h3 style="font:700 14.5px/1.2 Archivo;color:#1B1916;margin:0">{{ p.name }}</h3><p style="font:500 11px/1.4 'Hanken Grotesk';color:#A99F8C;margin:6px 0 0">{{ p.type }}</p></div>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+    <section style="padding:24px 18px 56px">
+      <h2 style="font:800 24px/1.1 Archivo;color:#1B1916;letter-spacing:-.02em;margin:0 0 6px">Partial client list</h2>
+      <p style="font:400 13.5px/1.5 'Hanken Grotesk';color:#A99F8C;margin:0 0 22px">A selection of the contractors and corporations we have served.</p>
+      <div style="display:flex;flex-direction:column">
+        <sc-for list="{{ clients }}" as="c" hint-placeholder-count="30">
+          <div style="display:flex;gap:10px;align-items:flex-start;padding:9px 0;border-bottom:1px solid #ECE7DC">
+            <span style="color:{{ accent }};font:700 14px/1.5 'Hanken Grotesk';flex:none">›</span>
+            <span style="font:500 14px/1.5 'Hanken Grotesk';color:#3F3A30">{{ c }}</span>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+  </main>
+  </sc-if>
+
+  <!-- ===================== CONTACT ===================== -->
+  <sc-if value="{{ isContact }}" hint-placeholder-val="{{ false }}">
+  <main>
+    <section style="background:radial-gradient(120% 140% at 12% 30%,#FFE7B0 0%,#FFF3D6 26%,#FFFBF2 52%,#FFFFFF 78%);position:relative;overflow:hidden;border-bottom:1px solid #E6E0D4;min-height:336px;display:flex;flex-direction:column;justify-content:flex-end;padding:32px 18px 30px">
+      <div aria-hidden="true" style="position:absolute;top:-10%;left:-6%;width:360px;height:360px;border-radius:50%;background:radial-gradient(circle,rgba(255,196,74,.55) 0%,rgba(255,196,74,0) 70%);filter:blur(6px);pointer-events:none"></div>
+      <div aria-hidden="true" style="position:absolute;inset:0;pointer-events:none;background:repeating-conic-gradient(from 110deg at 14% 8%,rgba(255,221,140,.55) 0deg 3deg,transparent 3deg 13deg);-webkit-mask:radial-gradient(120% 120% at 14% 8%,#000 0%,rgba(0,0,0,.5) 28%,transparent 62%);mask:radial-gradient(120% 120% at 14% 8%,#000 0%,rgba(0,0,0,.5) 28%,transparent 62%);mix-blend-mode:soft-light"></div>
+      <div aria-hidden="true" style="position:absolute;inset:0;pointer-events:none;background:repeating-conic-gradient(from 113deg at 14% 8%,rgba(255,255,255,.5) 0deg 1.4deg,transparent 1.4deg 9deg);-webkit-mask:radial-gradient(100% 100% at 14% 8%,#000 0%,transparent 52%);mask:radial-gradient(100% 100% at 14% 8%,#000 0%,transparent 52%)"></div>
+      <div aria-hidden="true" style="position:absolute;left:14%;top:8%;transform:translate(-50%,-50%);width:140px;height:140px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,250,.95) 0%,rgba(255,228,150,.7) 38%,rgba(255,210,110,0) 72%);filter:blur(2px);pointer-events:none"></div>
+      <img src="images/banners/contact-person.png" alt="Customer support" style="position:absolute;right:14px;bottom:0;height:80%;width:auto;object-fit:contain;object-position:bottom right">
+      <div style="position:relative;max-width:60%">
+        <span style="font:600 11px/1 'Hanken Grotesk';letter-spacing:.14em;color:{{ accent }};text-transform:uppercase">Get in touch</span>
+        <h1 style="font:800 30px/1.1 Archivo;color:#1B1916;letter-spacing:-.025em;margin:12px 0 0">Let's talk specifications</h1>
+        <p style="font:400 14.5px/1.55 'Hanken Grotesk';color:#5A5448;margin:14px 0 0">Send us your requirement and we'll get back to you with a quote.</p>
+      </div>
+    </section>
+    <section style="padding:34px 18px 24px">
+      <div style="background:#fff;border:1px solid #E6E0D4;border-radius:16px;padding:34px 22px">
+        <h3 style="font:700 20px/1.2 Archivo;color:#1B1916;margin:0 0 20px">Send an inquiry</h3>
+        <div style="display:flex;flex-direction:column;gap:14px">
+          <label style="display:flex;flex-direction:column;gap:6px"><span style="font:600 12px/1 'Hanken Grotesk';color:#5A5448">Name</span><input style="border:1px solid #E0D8C7;border-radius:9px;padding:13px 14px;font:400 15px/1 'Hanken Grotesk';color:#1B1916;background:#FAF8F3" placeholder="Your name"></label>
+          <label style="display:flex;flex-direction:column;gap:6px"><span style="font:600 12px/1 'Hanken Grotesk';color:#5A5448">Company</span><input style="border:1px solid #E0D8C7;border-radius:9px;padding:13px 14px;font:400 15px/1 'Hanken Grotesk';color:#1B1916;background:#FAF8F3" placeholder="Company name"></label>
+          <label style="display:flex;flex-direction:column;gap:6px"><span style="font:600 12px/1 'Hanken Grotesk';color:#5A5448">Email</span><input style="border:1px solid #E0D8C7;border-radius:9px;padding:13px 14px;font:400 15px/1 'Hanken Grotesk';color:#1B1916;background:#FAF8F3" placeholder="you@company.com"></label>
+          <label style="display:flex;flex-direction:column;gap:6px"><span style="font:600 12px/1 'Hanken Grotesk';color:#5A5448">Requirement</span><textarea rows="4" style="border:1px solid #E0D8C7;border-radius:9px;padding:13px 14px;font:400 15px/1.5 'Hanken Grotesk';color:#1B1916;background:#FAF8F3;resize:vertical" placeholder="Tell us the product and specifications you need"></textarea></label>
+          <button style="background:{{ accent }};color:#fff;border:none;cursor:pointer;font:700 15px/1 'Hanken Grotesk';padding:16px;border-radius:999px;margin-top:2px">Send inquiry</button>
+        </div>
+      </div>
+    </section>
+    <section style="padding:0 18px 44px">
+      <div style="background:#fff;border:1px solid #E6E0D4;border-radius:16px;padding:24px 22px">
+        <span style="font:600 10.5px/1 'Hanken Grotesk';letter-spacing:.12em;color:{{ accent }};text-transform:uppercase">Office &amp; Plant</span>
+        <p style="font:600 16px/1.5 'Hanken Grotesk';color:#1B1916;margin:12px 0 0">2070 Candido Street, SEAMCOP Compound, Mapulang Lupa, Valenzuela City 1448</p>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px">
+        <div style="background:#fff;border:1px solid #E6E0D4;border-radius:16px;padding:20px">
+          <span style="font:600 10px/1 'Hanken Grotesk';letter-spacing:.12em;color:{{ accent }};text-transform:uppercase">Primary</span>
+          <p style="font:600 14px/1.65 'Hanken Grotesk';color:#1B1916;margin:11px 0 0">7002-4927<br>0925-544-6200</p>
+          <p style="font:500 12px/1.6 'Hanken Grotesk';color:#756E62;margin:8px 0 0">info@sunshinerubberph.com</p>
+        </div>
+        <div style="background:#fff;border:1px solid #E6E0D4;border-radius:16px;padding:20px">
+          <span style="font:600 10px/1 'Hanken Grotesk';letter-spacing:.12em;color:{{ accent }};text-transform:uppercase">Landline / Fax</span>
+          <p style="font:600 14px/1.65 'Hanken Grotesk';color:#1B1916;margin:11px 0 0">(+632) 443-6808<br>(+632) 443-6809</p>
+          <p style="font:500 12px/1.6 'Hanken Grotesk';color:#756E62;margin:8px 0 0">sunshine_rubber@yahoo.com.ph</p>
+        </div>
+      </div>
+      <div style="margin-top:14px;border-radius:16px;overflow:hidden;border:1px solid #E6E0D4;height:150px;background:repeating-linear-gradient(45deg,#EDE8DD,#EDE8DD 11px,#E6E0D4 11px,#E6E0D4 22px);display:flex;align-items:center;justify-content:center">
+        <span style="font:600 10px/1 'Hanken Grotesk';letter-spacing:.14em;color:#A99F8C;text-transform:uppercase;text-align:center;padding:0 16px">Map — Mapulang Lupa, Valenzuela City</span>
+      </div>
+    </section>
+  </main>
+  </sc-if>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer style="background:#141210;color:#fff;padding:40px 18px 28px">
+    <div style="display:flex;align-items:center;gap:11px">
+      <img src="images/sunshine-logo.svg" alt="Sunshine Rubber logo" width="48" height="48" style="width:48px;height:48px;object-fit:contain;display:block">
+      <span style="display:flex;flex-direction:column;line-height:1"><span style="font:800 17px/1 Archivo">SUNSHINE RUBBER</span><span style="font:600 9px/1.4 'Hanken Grotesk';letter-spacing:.22em;color:#E0750C;margin-top:3px">TECH RESOURCES, CO.</span></span>
+    </div>
+    <p style="font:400 13.5px/1.6 'Hanken Grotesk';color:#948D80;margin:18px 0 26px">High-quality molded and extruded rubber and structural products, manufactured in Valenzuela City since 1991.</p>
+    <div style="display:flex;flex-direction:column;gap:14px;padding-bottom:24px;border-bottom:1px solid #2C2823">
+      <span style="font:600 10.5px/1 'Hanken Grotesk';letter-spacing:.12em;color:#6E665A;text-transform:uppercase">Explore</span>
+      <div style="display:flex;flex-wrap:wrap;gap:18px">
+        <button onClick="{{ goAbout }}" style="background:none;border:none;cursor:pointer;font:500 14px/1 'Hanken Grotesk';color:#C9C3B6;padding:0">About</button>
+        <button onClick="{{ goProducts }}" style="background:none;border:none;cursor:pointer;font:500 14px/1 'Hanken Grotesk';color:#C9C3B6;padding:0">Products</button>
+        <button onClick="{{ goClients }}" style="background:none;border:none;cursor:pointer;font:500 14px/1 'Hanken Grotesk';color:#C9C3B6;padding:0">Clients</button>
+        <button onClick="{{ goContact }}" style="background:none;border:none;cursor:pointer;font:500 14px/1 'Hanken Grotesk';color:#C9C3B6;padding:0">Contact</button>
+      </div>
+    </div>
+    <p style="font:400 13px/1.7 'Hanken Grotesk';color:#C9C3B6;margin:22px 0 0">2070 Candido Street, SEAMCOP Compound,<br>Mapulang Lupa, Valenzuela City 1448<br>7002-4927 · 0925-544-6200<br>info@sunshinerubberph.com</p>
+    <p style="font:400 12px/1.6 'Hanken Grotesk';color:#6E665A;margin:24px 0 0">© 1991–2026 Sunshine Rubber Tech Resources Co.<br>All rights reserved · Valenzuela City, Philippines</p>
+  </footer>
+
+  <!-- ===== STICKY BOTTOM TAB BAR ===== -->
+  <nav style="position:fixed;left:50%;transform:translateX(-50%);bottom:0;z-index:90;width:100%;max-width:440px;background:rgba(250,248,243,.94);backdrop-filter:blur(14px);border-top:1px solid #E6E0D4;display:flex;align-items:stretch;height:66px;padding-bottom:env(safe-area-inset-bottom)">
+    <sc-for list="{{ tabs }}" as="t" hint-placeholder-count="5">
+      <button onClick="{{ t.onClick }}" aria-label="{{ t.label }}" style="flex:1;background:none;border:none;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;padding:8px 0 9px;color:{{ t.color }}">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="display:block"><path d="{{ t.icon }}"></path></svg>
+        <span style="font:600 9.5px/1 'Hanken Grotesk';letter-spacing:.01em;color:{{ t.color }}">{{ t.label }}</span>
+      </button>
+    </sc-for>
+  </nav>
+
+  <!-- ===== MESSENGER CHAT WIDGET ===== -->
+  <div style="position:fixed;right:16px;bottom:82px;z-index:200;display:flex;flex-direction:column;align-items:flex-end;gap:12px;font-family:'Hanken Grotesk',sans-serif">
+    <sc-if value="{{ chatOpen }}" hint-placeholder-val="{{ false }}">
+    <div style="width:300px;max-width:calc(100vw - 32px);background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 18px 50px rgba(20,18,16,.28);animation:scrIn .22s ease both">
+      <div style="background:linear-gradient(135deg,#0A7CFF 0%,#A033FF 50%,#FF5280 100%);padding:16px 18px;display:flex;align-items:center;gap:12px">
+        <div style="width:38px;height:38px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;flex:none;overflow:hidden">
+          <img src="images/sunshine-logo.svg" alt="Sunshine Rubber" width="30" height="30" style="width:30px;height:30px;object-fit:contain;display:block">
+        </div>
+        <div style="flex:1;min-width:0">
+          <div style="font:700 15px/1.2 Archivo;color:#fff">Sunshine Rubber</div>
+          <div style="display:flex;align-items:center;gap:6px;margin-top:3px"><span style="width:6px;height:6px;border-radius:50%;background:#3FE07A"></span><span style="font:500 11px/1 'Hanken Grotesk';color:rgba(255,255,255,.85)">Typically replies within an hour</span></div>
+        </div>
+        <button onClick="{{ toggleChat }}" aria-label="Close chat" style="background:rgba(255,255,255,.18);border:none;cursor:pointer;width:28px;height:28px;border-radius:50%;color:#fff;font:600 17px/1 'Hanken Grotesk';display:flex;align-items:center;justify-content:center;flex:none">×</button>
+      </div>
+      <div style="padding:20px 18px;background:#F4F6FB;display:flex;flex-direction:column;gap:12px">
+        <div style="display:flex;gap:9px;align-items:flex-end">
+          <div style="width:26px;height:26px;border-radius:50%;background:#fff;border:1px solid #E6E0D4;display:flex;align-items:center;justify-content:center;flex:none;overflow:hidden"><img src="images/sunshine-logo.svg" alt="" width="18" height="18" style="width:18px;height:18px;object-fit:contain"></div>
+          <div style="background:#fff;border-radius:16px 16px 16px 4px;padding:11px 14px;font:400 13.5px/1.5 'Hanken Grotesk';color:#1B1916;max-width:210px;box-shadow:0 1px 2px rgba(20,18,16,.06)">Hi there! 👋 Thanks for reaching out to Sunshine Rubber Tech Resources. How can we help with your requirement?</div>
+        </div>
+      </div>
+      <div style="padding:12px 14px;background:#fff;border-top:1px solid #EAE6DC;display:flex;align-items:center;gap:9px">
+        <input placeholder="Type a message…" style="flex:1;border:1px solid #E0DACE;border-radius:999px;padding:10px 15px;font:400 13.5px/1 'Hanken Grotesk';color:#1B1916;background:#F7F8FB;outline:none">
+        <a href="https://m.me/" target="_blank" rel="noopener" style="flex:none;width:38px;height:38px;border-radius:50%;background:#0A7CFF;display:flex;align-items:center;justify-content:center;text-decoration:none">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M22 2l-7 20-4-9-9-4 20-7z" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </div>
+    </sc-if>
+    <button onClick="{{ toggleChat }}" aria-label="Chat with us on Messenger" style="width:56px;height:56px;border-radius:50%;border:none;cursor:pointer;background:#0A7CFF;box-shadow:0 8px 22px rgba(10,124,255,.42);display:flex;align-items:center;justify-content:center">
+      <sc-if value="{{ chatOpen }}" hint-placeholder-val="{{ false }}">
+        <span style="font:600 28px/1 'Hanken Grotesk';color:#fff">×</span>
+      </sc-if>
+      <sc-if value="{{ chatClosed }}" hint-placeholder-val="{{ true }}">
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="#fff"><path d="M12 2C6.36 2 2 6.13 2 11.7c0 2.91 1.19 5.44 3.14 7.18.16.15.26.35.27.57l.05 1.78c.02.57.6.94 1.12.71l1.99-.88c.17-.07.36-.09.54-.04 1.02.28 2.1.43 3.21.43 5.64 0 10-4.13 10-9.7C22 6.13 17.64 2 12 2z"/><path d="M5.98 14.55l2.94-4.66a1.5 1.5 0 0 1 2.17-.4l2.34 1.75c.21.16.51.16.72 0l3.16-2.4c.42-.32.97.18.69.63l-2.94 4.66a1.5 1.5 0 0 1-2.17.4l-2.34-1.75a.6.6 0 0 0-.72 0l-3.16 2.4c-.42.32-.97-.18-.69-.63z" fill="#0A7CFF"/></svg>
+      </sc-if>
+    </button>
+  </div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:390,&quot;height&quot;:844},&quot;accent&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Gold&quot;,&quot;Orange&quot;,&quot;Crimson&quot;],&quot;default&quot;:&quot;Orange&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+class Component extends DCLogic {
+  state = { page: 'home', cat: 'All', chatOpen: false, menuOpen: false };
+
+  go(p) {
+    this.setState({ page: p, menuOpen: false });
+    try { window.scrollTo({ top: 0, behavior: 'instant' }); } catch (e) { window.scrollTo(0, 0); }
+  }
+
+  renderVals() {
+    const { page, cat } = this.state;
+    const accent = ({ Gold: '#C2901E', Orange: '#E8730F', Crimson: '#C8372A' })[this.props.accent] || '#E8730F';
+
+    const navStyle = (p) => ({
+      background: 'none', border: 'none', cursor: 'pointer', textAlign: 'left',
+      fontFamily: 'Archivo', fontSize: '21px',
+      fontWeight: page === p ? 800 : 700,
+      color: page === p ? accent : '#1B1916', padding: '13px 0',
+      borderBottom: '1px solid #E6E0D4'
+    });
+
+    const allProducts = [
+      { img: 'images/products/bearing-pad.png', name: 'Elastomeric Bearing Pad', cat: 'Bridge & Structural', tag: 'Bridge', blurb: 'Steel-laminated pads that absorb load and movement between bridge girders and supports.' },
+      { img: 'images/products/expansion-joint.png', name: 'Expansion Joint (Sunflex)', cat: 'Bridge & Structural', tag: 'Bridge', blurb: 'Rubber joints that accommodate thermal movement across bridge and roadway gaps.' },
+      { img: 'images/products/seismic-gap.png', name: 'Seismic Gap Cover', cat: 'Bridge & Structural', tag: 'Bridge', blurb: 'Flexible seismic joint covers that protect structural gaps during ground movement.' },
+      { img: 'images/products/bearing-sleeve.svg', name: 'Bearing Sleeves', cat: 'Bridge & Structural', tag: 'Bridge', blurb: 'Precision sleeves for fixed and expansion bearing assemblies.' },
+      { img: 'images/products/compressible-pad.svg', name: 'Compressible Pad', cat: 'Bridge & Structural', tag: 'Bridge', blurb: 'Compressible filler pads for structural joints and interfaces.' },
+      { img: 'images/products/water-stop.svg', name: 'Water Stop (Rubber / PVC)', cat: 'Bridge & Structural', tag: 'Bridge', blurb: 'Water stops that seal construction joints against water ingress.' },
+      { img: 'images/products/pejf.svg', name: 'PEJF Joint Fillers', cat: 'Bridge & Structural', tag: 'Bridge', blurb: 'Premolded expansion joint fillers for concrete pavements and structures.' },
+      { img: 'images/products/steel-gasket.svg', name: 'Rubber Steel Gasket', cat: 'Rubber Products', tag: 'Rubber', blurb: 'Steel-reinforced rubber gaskets for pipe and flange sealing.' },
+      { img: 'images/products/rubber-gasket.svg', name: 'Rubber Gasket', cat: 'Rubber Products', tag: 'Rubber', blurb: 'Molded gaskets for PVC, pipes and industrial sealing applications.' },
+      { img: 'images/products/column-guard.svg', name: 'Rubber Column Guard', cat: 'Rubber Products', tag: 'Rubber', blurb: 'Impact-resistant column guards to protect structures and vehicles.' },
+      { img: 'images/products/rubber-bumper.svg', name: 'Rubber Bumper', cat: 'Rubber Products', tag: 'Rubber', blurb: 'Heavy-duty dock and port bumpers that absorb berthing and impact loads.' },
+      { img: 'images/products/molded-rubber.svg', name: 'Molded & Extruded Rubber', cat: 'Rubber Products', tag: 'Rubber', blurb: 'Custom bushings, stoppers, footings, strips and impact rollers.' },
+      { img: 'images/products/signage.svg', name: 'Road Signage', cat: 'Road Safety', tag: 'Road Safety', blurb: 'Warning, regulatory and informatory signage on engineering-grade panels.' },
+      { img: 'images/products/pavement-studs.svg', name: 'Pavement Studs', cat: 'Road Safety', tag: 'Road Safety', blurb: 'Reflective pavement studs for lane delineation and night-time visibility.' },
+      { img: 'images/products/guardrail.svg', name: 'Guardrail (AASHTO)', cat: 'Road Safety', tag: 'Road Safety', blurb: 'Hot-dipped galvanized guardrails manufactured per AASHTO specification.' }
+    ];
+    const products = cat === 'All' ? allProducts : allProducts.filter(p => p.cat === cat);
+
+    const cats = ['All', 'Bridge & Structural', 'Rubber Products', 'Road Safety'];
+    const catBtnBase = {
+      cursor: 'pointer', fontFamily: "'Hanken Grotesk',sans-serif", fontSize: '13px',
+      fontWeight: 600, padding: '9px 16px', borderRadius: '999px', border: '1px solid', whiteSpace: 'nowrap', flex: 'none'
+    };
+    const catButtons = cats.map(c => ({
+      label: c, onClick: () => this.setState({ cat: c }),
+      style: c === cat
+        ? { ...catBtnBase, background: '#1B1916', color: '#fff', borderColor: '#1B1916' }
+        : { ...catBtnBase, background: '#fff', color: '#1B1916', borderColor: '#E6E0D4' }
+    }));
+
+    const goCat = (c) => () => { this.setState({ cat: c }); this.go('products'); };
+
+    return {
+      isHome: page === 'home', isAbout: page === 'about', isProducts: page === 'products',
+      isClients: page === 'clients', isContact: page === 'contact',
+      goHome: () => this.go('home'), goAbout: () => this.go('about'), goProducts: () => this.go('products'),
+      goClients: () => this.go('clients'), goContact: () => this.go('contact'),
+      navHome: navStyle('home'), navAbout: navStyle('about'), navProducts: navStyle('products'),
+      navClients: navStyle('clients'), navContact: navStyle('contact'),
+
+      menuOpen: this.state.menuOpen,
+      toggleMenu: () => this.setState(s => ({ menuOpen: !s.menuOpen })),
+
+      tabs: [
+        { page: 'home', label: 'Home', icon: 'M3 10.7 12 4l9 6.7M5 9.6V20h5v-6h4v6h5V9.6', onClick: () => this.go('home') },
+        { page: 'about', label: 'About', icon: 'M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18M12 11v5M12 7.6v.1', onClick: () => this.go('about') },
+        { page: 'products', label: 'Products', icon: 'M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z', onClick: () => this.go('products') },
+        { page: 'clients', label: 'Clients', icon: 'M5 21V5l7-2v18M12 21V9l7 2v10M3 21h18M8 8h.1M8 12h.1M8 16h.1', onClick: () => this.go('clients') },
+        { page: 'contact', label: 'Contact', icon: 'M3 6h18v12H3zM3.5 7l8.5 6 8.5-6', onClick: () => this.go('contact') }
+      ].map(t => ({ ...t, color: page === t.page ? accent : '#9C9484' })),
+
+      chatOpen: this.state.chatOpen, chatClosed: !this.state.chatOpen,
+      toggleChat: () => this.setState(s => ({ chatOpen: !s.chatOpen })),
+
+      accent,
+      products, catButtons,
+
+      catCards: [
+        { num: '01', title: 'Bridge & Structural', desc: 'Bearing pads, expansion joints, seismic gaps, water stops and PEJF.', onClick: goCat('Bridge & Structural') },
+        { num: '02', title: 'Rubber Products', desc: 'Gaskets, bumpers, column guards and custom molded & extruded rubber.', onClick: goCat('Rubber Products') },
+        { num: '03', title: 'Road Safety & Signage', desc: 'Guardrails, pavement studs and regulatory / warning signage.', onClick: goCat('Road Safety') }
+      ],
+
+      features: [
+        { title: 'In-house manufacturing', desc: 'Molded and extruded rubber produced on our own presses, mills and extruders in Valenzuela City.' },
+        { title: 'Built to spec', desc: 'Guardrails and signage manufactured to AASHTO and engineering-grade standards.' },
+        { title: '35 years of trust', desc: 'Supplying the Philippines\u2019 bridges, expressways and high-rises since 1991.' },
+        { title: 'Prompt delivery', desc: 'Reliable, on-time delivery backed by our own fleet and quality control.' }
+      ],
+
+      timeline: [
+        { year: '1991', title: 'Incorporated', desc: 'Founded February 14, 1991 with an initial authorized capital of \u20b1100,000.' },
+        { year: '1992', title: 'Production begins', desc: 'Operations start in Dalandanan, Valenzuela City with capacity for 2 metric tons of raw rubber per month.' },
+        { year: '1994', title: 'Scaling up', desc: 'Capitalization increased to \u20b15 million to add high-end machinery for faster, larger production.' }
+      ],
+
+      missions: [
+        'Provide a unique combination of products and services tailored to each requirement.',
+        'Constantly monitor and improve the quality of our products and services.',
+        'Attain a position second to none through a professional approach, quality and prompt delivery.'
+      ],
+
+      machinery: ['2 \u00d7 Hydraulic Press', '2 \u00d7 Mixing Rollers', '15 \u00d7 Mechanical Press', '3 \u00d7 Extruder Machines', '2 \u00d7 Welding Machines', '1 \u00d7 Grinding Machine', '1 \u00d7 Bench Drill', 'Boiler & Auto Clave', '2 \u00d7 Lathe Machine', '1 \u00d7 Shaper', '1 \u00d7 Delivery Van', 'Laboratory Equipment'],
+
+      projects: [
+        { img: 'images/projects/tplex.png', name: 'TPLEX', type: 'Tarlac\u2013Pangasinan\u2013La Union Expressway' },
+        { img: 'images/projects/cavitex.png', name: 'Cavite Expressway Viaduct 3', type: 'CAVITEX infrastructure' },
+        { img: 'images/projects/mcx-toll.png', name: 'Manila\u2013Cavite Toll P-1 Seg. 4', type: 'Tollway segment' },
+        { img: 'images/projects/alphaland.png', name: 'Alpha Land', type: 'Commercial high-rise' },
+        { img: 'images/projects/sun-residences.png', name: 'Sun Residences', type: 'Residential tower' },
+        { img: 'images/projects/the-grove.png', name: 'The Grove', type: 'Rockwell residential development' }
+      ],
+
+      clients: ['Aluminum Resources & Installation Systems, Inc.', 'Aristocrat Trading', "Asia Structural Dev't Corporation", 'Atlanta Industries Incorporated', 'Auto Steel Corporation', 'Bataan Manufacturing Co., Inc.', 'BradPhil, Inc.', 'C.M. Pancho Construction', 'Champion Fine Toolings Corp.', 'China Geo-Engineering (Phil.) Corp.', 'China Road and Bridge Corp.', 'Datem Incorporated', 'Digee Glass and Aluminum', 'D.M. Consunji, Inc.', 'Doron Builders', 'EEI Corporation', 'Emerald Vinyl Corporation', 'F.F. Cruz & Co., Inc.', 'Fil-Asia Shutters', 'Frey-Fil Corp.', 'GGP Enterprises', 'Glasscade System Specialist, Inc.', 'Glazetech Glass & Aluminum', 'Golden Empire', 'H3 Technology Phils.', 'Hanjin Engineering', "Hilmarc's Construction Corporation", 'Infinite Quality Designs Center, Inc.', 'Jacinto Colors', 'J.E. Manolo', 'Jhaycor Industries, Inc.', 'JLL Pulsar Construction Corp.', 'JYM Construction & Supply', "Linker's Enterprises Corp.", 'L.R. Tiqui Builders, Inc.', 'Mega Precision Corporation', 'Megawide Corp.', 'Metalite Builders Co., Inc.', 'Metrotech Steel', 'Mindanao Container Corporation', "Monolith Construction & Dev't. Corp.", 'NQA Construction', 'NTPI International, Inc.', 'Omnicon Incorporated', 'Pacific Concrete Products, Inc.', 'Power Coat Manufacturing Co., Inc.', 'R.D. Interior', 'San Miguel Yamamura Plastic Corp.', 'Senyoung Construction Corp.', 'Shimizu Corporation', 'Sinian International Corp.', 'Sobida Motors Corporation', 'Solar Venture', 'Sta. Clara International', 'Tokwing Construction Corporation', 'Trans-Asia Phils. Corp.', 'Unitan Construction Corp.', 'United Container Corporation', 'WhitePort Inc.']
+    };
+  }
+}
+</script>
+</body>
+</html>

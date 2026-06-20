@@ -1,0 +1,396 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import HeroDecor from "../components/HeroDecor.astro";
+import ContactForm from "../components/react/ContactForm.tsx";
+import { contact, contactDisclaimer } from "../data/contact";
+---
+
+<BaseLayout
+  title="Contact — Sunshine Rubber Tech Resources, Co."
+  description="Let's talk specifications. Send us your requirement for molded/extruded rubber and structural products. Office and plant in Mapulang Lupa, Valenzuela City."
+  ogImage="/images/banners/contact-banner.png"
+>
+  <!-- ===================== HERO (desktop) ===================== -->
+  <section class="hero-d desktop-only">
+    <div aria-hidden="true" class="contact-hero-grid">
+      <div></div>
+      <div class="hero-photo-col">
+        <img
+          src="/images/banners/contact-banner.png"
+          alt="Customer support representative"
+          class="contact-hero-img"
+        />
+      </div>
+    </div>
+    <div aria-hidden="true" class="hero-scrim"></div>
+    <HeroDecor />
+    <div class="container hero-inner">
+      <span class="eyebrow">Get in touch</span>
+      <h1 class="hero-h1">Let's talk specifications</h1>
+      <p class="hero-lead">
+        Send us your requirement and we'll get back to you with a quote. Our plant and
+        office are in Valenzuela City.
+      </p>
+    </div>
+  </section>
+
+  <!-- ===================== HERO (mobile) ===================== -->
+  <section class="hero-m mobile-only">
+    <div aria-hidden="true" class="p-glow"></div>
+    <div aria-hidden="true" class="p-rays-soft"></div>
+    <div aria-hidden="true" class="p-core"></div>
+    <img
+      src="/images/banners/contact-person.png"
+      alt="Customer support"
+      class="hero-m-cut"
+    />
+    <div class="hero-m-copy">
+      <span class="eyebrow">Get in touch</span>
+      <h1 class="hero-m-h1">Let's talk specifications</h1>
+      <p class="hero-m-lead">
+        Send us your requirement and we'll get back to you with a quote.
+      </p>
+    </div>
+  </section>
+
+  <!-- ===================== BODY ===================== -->
+  <section class="contact-body">
+    <div class="container body-grid">
+      <div class="info">
+        <div class="info-card">
+          <span class="info-eyebrow">Office &amp; Plant</span>
+          <p class="info-address">
+            {contact.addressLines[0]}<br />{contact.addressLines[1]}
+          </p>
+        </div>
+
+        <div class="info-2up">
+          <div class="info-card">
+            <span class="info-eyebrow">Primary</span>
+            <p class="info-phones">
+              {contact.primary.phones[0]}<br />{contact.primary.phones[1]}
+            </p>
+            <p class="info-email">
+              {contact.primary.email}<br />{contact.primary.web}
+            </p>
+          </div>
+          <div class="info-card">
+            <span class="info-eyebrow">Landline / Fax</span>
+            <p class="info-phones">
+              {contact.landlineFax.phones[0]}<br />{contact.landlineFax.phones[1]}
+            </p>
+            <p class="info-email">{contact.landlineFax.email}</p>
+          </div>
+        </div>
+
+        <p class="info-disclaimer">{contactDisclaimer}</p>
+
+        <div class="map" role="img" aria-label="Map — Mapulang Lupa, Valenzuela City">
+          <span class="map-label">Map — Mapulang Lupa, Valenzuela City</span>
+        </div>
+      </div>
+
+      <div class="form-col">
+        <ContactForm client:visible />
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* ---------- HERO desktop ---------- */
+  .hero-d {
+    background: linear-gradient(180deg, #ffffff, #faf7f0);
+    border-bottom: 1px solid var(--border);
+    padding: 96px 0 72px;
+    position: relative;
+    overflow: hidden;
+    min-height: 440px;
+    display: flex;
+    align-items: center;
+  }
+  .contact-hero-grid {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: var(--maxw);
+    padding: 0 var(--gutter);
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 56px;
+    pointer-events: none;
+  }
+  .hero-photo-col {
+    position: relative;
+  }
+  .contact-hero-img {
+    position: absolute;
+    top: 10px;
+    left: -24px;
+    width: calc(100% + 114px);
+    height: calc(100% - 10px);
+    object-fit: cover;
+    object-position: 52% center;
+    -webkit-mask: linear-gradient(90deg, transparent 0%, #000 30%);
+    mask: linear-gradient(90deg, transparent 0%, #000 30%);
+    pointer-events: none;
+  }
+  .hero-scrim {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(
+      90deg,
+      #fbf8f2 0%,
+      #fbf8f2 30%,
+      rgba(251, 248, 242, 0.6) 52%,
+      rgba(251, 248, 242, 0) 78%
+    );
+  }
+  .hero-inner {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+  }
+  .hero-h1 {
+    font: 800 52px/1.04 var(--font-display);
+    color: var(--ink);
+    letter-spacing: -0.025em;
+    margin: 16px 0 0;
+  }
+  .hero-lead {
+    font: 400 17px/1.6 var(--font-body);
+    color: var(--body-2);
+    max-width: 580px;
+    margin: 18px 0 0;
+  }
+
+  /* tablet band: collapse the hero photo grid (per handoff @media 900) */
+  @media (max-width: 900px) and (min-width: 768px) {
+    .contact-hero-grid {
+      grid-template-columns: 1fr;
+      padding: 0;
+    }
+    .contact-hero-grid > div:first-child {
+      display: none;
+    }
+    .contact-hero-img {
+      left: 0;
+      right: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      object-position: 50% center;
+      -webkit-mask: none;
+      mask: none;
+    }
+    .hero-h1 {
+      font-size: 44px;
+    }
+  }
+
+  /* ---------- HERO mobile ---------- */
+  .hero-m {
+    background: var(--hero-warm);
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid var(--border);
+    min-height: 336px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 32px var(--gutter-m) 30px;
+  }
+  .p-glow,
+  .p-rays-soft,
+  .p-core {
+    position: absolute;
+    pointer-events: none;
+  }
+  .p-glow {
+    top: -10%;
+    left: -6%;
+    width: 360px;
+    height: 360px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 196, 74, 0.55) 0%, rgba(255, 196, 74, 0) 70%);
+    filter: blur(6px);
+  }
+  .p-rays-soft {
+    inset: 0;
+    background: repeating-conic-gradient(from 110deg at 14% 8%, rgba(255, 221, 140, 0.55) 0deg 3deg, transparent 3deg 13deg);
+    -webkit-mask: radial-gradient(120% 120% at 14% 8%, #000 0%, rgba(0, 0, 0, 0.5) 28%, transparent 62%);
+    mask: radial-gradient(120% 120% at 14% 8%, #000 0%, rgba(0, 0, 0, 0.5) 28%, transparent 62%);
+    mix-blend-mode: soft-light;
+  }
+  .p-core {
+    left: 14%;
+    top: 8%;
+    transform: translate(-50%, -50%);
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 255, 250, 0.95) 0%, rgba(255, 228, 150, 0.7) 38%, rgba(255, 210, 110, 0) 72%);
+    filter: blur(2px);
+  }
+  .hero-m-cut {
+    position: absolute;
+    right: 14px;
+    bottom: 0;
+    height: 80%;
+    width: auto;
+    object-fit: contain;
+    object-position: bottom right;
+  }
+  .hero-m-copy {
+    position: relative;
+    max-width: 60%;
+  }
+  .hero-m-h1 {
+    font: 800 30px/1.1 var(--font-display);
+    color: var(--ink);
+    letter-spacing: -0.025em;
+    margin: 12px 0 0;
+  }
+  .hero-m-lead {
+    font: 400 14.5px/1.55 var(--font-body);
+    color: var(--body-2);
+    margin: 14px 0 0;
+  }
+
+  /* ---------- BODY ---------- */
+  .contact-body {
+    padding: 72px 0 92px;
+  }
+  .body-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 56px;
+  }
+  .info-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 30px;
+  }
+  .info-eyebrow {
+    font: 600 11px/1 var(--font-body);
+    letter-spacing: 0.14em;
+    color: var(--accent);
+    text-transform: uppercase;
+  }
+  .info-address {
+    font: 600 18px/1.5 var(--font-body);
+    color: var(--ink);
+    margin: 14px 0 0;
+  }
+  .info-2up {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    margin-top: 18px;
+  }
+  .info-2up .info-card {
+    padding: 26px;
+  }
+  .info-phones {
+    font: 600 16px/1.7 var(--font-body);
+    color: var(--ink);
+    margin: 14px 0 0;
+  }
+  .info-email {
+    font: 500 14px/1.7 var(--font-body);
+    color: var(--muted);
+    margin: 10px 0 0;
+  }
+  .info-disclaimer {
+    font: 400 12.5px/1.5 var(--font-body);
+    color: var(--muted-3);
+    margin: 14px 2px 0;
+  }
+  .map {
+    margin-top: 18px;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    height: 200px;
+    background: repeating-linear-gradient(45deg, #ede8dd, #ede8dd 11px, #e6e0d4 11px, #e6e0d4 22px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .map-label {
+    font: 600 11px/1 var(--font-body);
+    letter-spacing: 0.16em;
+    color: var(--muted-3);
+    text-transform: uppercase;
+  }
+
+  /* ---------- MOBILE (<768px) ---------- */
+  @media (max-width: 767px) {
+    .contact-body {
+      padding: 34px 0 44px;
+    }
+    .body-grid {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+    /* form first, info after (matches the mobile reference) */
+    .form-col {
+      order: -1;
+    }
+
+    .info {
+      display: flex;
+      flex-direction: column;
+    }
+    .info-card {
+      padding: 24px 22px;
+    }
+    .info-eyebrow {
+      font-size: 10.5px;
+      letter-spacing: 0.12em;
+    }
+    .info-address {
+      font-size: 16px;
+      margin: 12px 0 0;
+    }
+    .info-2up {
+      gap: 14px;
+      margin-top: 14px;
+    }
+    .info-2up .info-card {
+      padding: 20px;
+    }
+    .info-2up .info-eyebrow {
+      font-size: 10px;
+    }
+    .info-phones {
+      font-size: 14px;
+      line-height: 1.65;
+      margin: 11px 0 0;
+    }
+    .info-email {
+      font-size: 12px;
+      line-height: 1.6;
+      margin: 8px 0 0;
+    }
+    .info-disclaimer {
+      margin: 14px 2px 0;
+    }
+    .map {
+      margin-top: 14px;
+      height: 150px;
+    }
+    .map-label {
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-align: center;
+      padding: 0 16px;
+    }
+  }
+</style>

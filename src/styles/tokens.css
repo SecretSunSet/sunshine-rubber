@@ -1,0 +1,77 @@
+/*
+ * Design tokens — Sunshine Rubber Tech Resources
+ * Values lifted verbatim from the design handoff (README "Design Tokens" + the
+ * inline styles in the .dc.html references). The accent is a single themeable
+ * token: swap --accent to retheme (default ships Orange per the handoff).
+ */
+:root {
+  /* Surfaces & backgrounds */
+  --bg: #faf8f3;            /* warm off-white page background */
+  --surface: #ffffff;       /* cards, bands */
+  --tile: #efeae0;          /* image placeholder background */
+  --footer: #141210;        /* footer background */
+
+  /* Text */
+  --ink: #1b1916;           /* primary text, dark bands */
+  --body: #3f3a30;          /* paragraph text */
+  --body-2: #5a5448;        /* secondary paragraph text */
+  --muted: #756e62;         /* card descriptions */
+  --muted-2: #8a8170;       /* stat labels */
+  --muted-3: #a99f8c;       /* eyebrows over light, footnotes */
+
+  /* On dark bands */
+  --on-dark: #b0a99c;
+  --on-dark-2: #cfc9bc;
+  --on-dark-3: #c9c3b6;
+  --dark-divider: #34302a;
+
+  /* Borders */
+  --border: #e6e0d4;        /* card & section borders */
+  --border-pill: #e0d8c7;   /* eyebrow pill / inputs */
+  --footer-divider: #2c2823;
+  --footer-label: #6e665a;
+  --footer-blurb: #948d80;
+
+  /* Accent (themeable) + brand */
+  --accent: #e8730f;        /* default Orange */
+  --accent-gold: #c2901e;   /* alt */
+  --accent-crimson: #c8372a;/* alt */
+  --brand-sub: #e0750c;     /* "TECH RESOURCES, CO." wordmark */
+  --sun: #fdb813;           /* CTA band, AASHTO card, dark-band eyebrows */
+  --sun-ink: #7a5808;       /* text on the yellow AASHTO card */
+  --sun-ink-2: #3a2e12;     /* subcopy on the yellow CTA */
+  --messenger: #0a7cff;
+  --online: #3fe07a;
+  --hero-eyebrow-mobile: #ffd27a; /* eyebrow over dark photo heroes (mobile) */
+
+  /* Type */
+  --font-display: "Archivo", system-ui, sans-serif;
+  --font-body: "Hanken Grotesk", system-ui, sans-serif;
+
+  /* Layout */
+  --maxw: 1200px;
+  --gutter: 48px;           /* desktop content gutter */
+  --gutter-m: 18px;         /* mobile content gutter */
+  --bp: 768px;              /* primary desktop/mobile breakpoint (see note below) */
+
+  /* Radii */
+  --r-input: 9px;
+  --r-card: 16px;
+  --r-lg: 18px;
+  --r-xl: 22px;
+  --r-pill: 999px;
+
+  /* Shadows */
+  --shadow-chat: 0 18px 50px rgba(20, 18, 16, 0.28);
+  --shadow-launcher: 0 8px 22px rgba(10, 124, 255, 0.42);
+  --shadow-card-hover: 0 10px 30px rgba(27, 25, 22, 0.08);
+
+  /* Warm radial-gradient hero band (Products/Contact) */
+  --hero-warm: radial-gradient(120% 140% at 12% 30%, #ffe7b0 0%, #fff3d6 26%, #fffbf2 52%, #ffffff 78%);
+}
+
+/*
+ * NOTE: CSS @media queries cannot read custom properties, so --bp is the single
+ * documented source of truth and 768px is hardcoded in the media queries that
+ * switch between the desktop (>=768px) and canonical mobile (<768px) layouts.
+ */

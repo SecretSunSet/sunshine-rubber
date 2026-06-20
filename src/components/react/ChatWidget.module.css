@@ -1,0 +1,244 @@
+.wrap {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 200;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 14px;
+  font-family: var(--font-body);
+}
+
+.card {
+  width: 340px;
+  max-width: calc(100vw - 48px);
+  background: #fff;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: var(--shadow-chat);
+  animation: scrIn 0.22s ease both;
+}
+
+.header {
+  background: linear-gradient(135deg, #0a7cff 0%, #a033ff 50%, #ff5280 100%);
+  padding: 18px 20px;
+  display: flex;
+  align-items: center;
+  gap: 13px;
+}
+.avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  overflow: hidden;
+}
+.avatar img {
+  width: 34px;
+  height: 34px;
+  object-fit: contain;
+  display: block;
+}
+.headMeta {
+  flex: 1;
+  min-width: 0;
+}
+.headName {
+  font: 700 16px/1.2 var(--font-display);
+  color: #fff;
+}
+.status {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 3px;
+}
+.dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--online);
+}
+.statusText {
+  font: 500 12px/1 var(--font-body);
+  color: rgba(255, 255, 255, 0.85);
+}
+.close {
+  background: rgba(255, 255, 255, 0.18);
+  border: none;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  color: #fff;
+  font: 600 18px/1 var(--font-body);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+}
+
+.body {
+  padding: 22px 20px;
+  background: #f4f6fb;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.msgRow {
+  display: flex;
+  gap: 10px;
+  align-items: flex-end;
+}
+.msgAvatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #fff;
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  overflow: hidden;
+}
+.msgAvatar img {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+.bubble {
+  background: #fff;
+  border-radius: 16px 16px 16px 4px;
+  padding: 12px 15px;
+  font: 400 14px/1.5 var(--font-body);
+  color: var(--ink);
+  max-width: 240px;
+  box-shadow: 0 1px 2px rgba(20, 18, 16, 0.06);
+}
+
+.inputRow {
+  padding: 14px 16px;
+  background: #fff;
+  border-top: 1px solid #eae6dc;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.input {
+  flex: 1;
+  border: 1px solid #e0dace;
+  border-radius: 999px;
+  padding: 11px 16px;
+  font: 400 14px/1 var(--font-body);
+  color: var(--ink);
+  background: #f7f8fb;
+  outline: none;
+}
+.send {
+  flex: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--messenger);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.launcher {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  background: var(--messenger);
+  box-shadow: var(--shadow-launcher);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.launcherClose {
+  font: 600 30px/1 var(--font-body);
+  color: #fff;
+}
+
+/* ---- Mobile (<768px): smaller launcher, sits above the bottom tab bar ---- */
+@media (max-width: 767px) {
+  .wrap {
+    right: 16px;
+    bottom: 82px;
+    gap: 12px;
+  }
+  .card {
+    width: 300px;
+    max-width: calc(100vw - 32px);
+  }
+  .header {
+    padding: 16px 18px;
+    gap: 12px;
+  }
+  .avatar {
+    width: 38px;
+    height: 38px;
+  }
+  .avatar img {
+    width: 30px;
+    height: 30px;
+  }
+  .headName {
+    font-size: 15px;
+  }
+  .statusText {
+    font-size: 11px;
+  }
+  .close {
+    width: 28px;
+    height: 28px;
+    font-size: 17px;
+  }
+  .body {
+    padding: 20px 18px;
+  }
+  .msgRow {
+    gap: 9px;
+  }
+  .msgAvatar {
+    width: 26px;
+    height: 26px;
+  }
+  .msgAvatar img {
+    width: 18px;
+    height: 18px;
+  }
+  .bubble {
+    padding: 11px 14px;
+    font-size: 13.5px;
+    max-width: 210px;
+  }
+  .inputRow {
+    padding: 12px 14px;
+    gap: 9px;
+  }
+  .input {
+    padding: 10px 15px;
+    font-size: 13.5px;
+  }
+  .send {
+    width: 38px;
+    height: 38px;
+  }
+  .launcher {
+    width: 56px;
+    height: 56px;
+  }
+  .launcherClose {
+    font-size: 28px;
+  }
+}

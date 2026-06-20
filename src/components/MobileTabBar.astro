@@ -1,0 +1,71 @@
+---
+import { tabs } from "../data/tabs";
+import { isActive } from "../data/nav";
+
+const pathname = Astro.url.pathname;
+---
+
+<nav class="tabbar mobile-only" aria-label="Primary">
+  {
+    tabs.map((tab) => {
+      const active = isActive(tab.href, pathname);
+      return (
+        <a
+          href={tab.href}
+          class:list={["tab", { active }]}
+          aria-current={active ? "page" : undefined}
+        >
+          <svg
+            width="22"
+            height="22"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d={tab.icon} />
+          </svg>
+          <span class="tab-label">{tab.label}</span>
+        </a>
+      );
+    })
+  }
+</nav>
+
+<style>
+  .tabbar {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 90;
+    background: rgba(250, 248, 243, 0.94);
+    backdrop-filter: blur(14px);
+    border-top: 1px solid var(--border);
+    display: flex;
+    align-items: stretch;
+    height: 66px;
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+  .tab {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    padding: 8px 0 9px;
+    color: #9c9484;
+    text-decoration: none;
+  }
+  .tab.active {
+    color: var(--accent);
+  }
+  .tab-label {
+    font: 600 9.5px/1 var(--font-body);
+    letter-spacing: 0.01em;
+  }
+</style>

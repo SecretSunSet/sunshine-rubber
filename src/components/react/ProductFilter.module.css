@@ -1,0 +1,126 @@
+.pills {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 34px;
+}
+.pill {
+  cursor: pointer;
+  font: 600 14px/1 var(--font-body);
+  padding: 11px 20px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: #fff;
+  color: var(--ink);
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+.pill:hover {
+  border-color: var(--ink);
+}
+.pillActive {
+  background: var(--ink);
+  color: #fff;
+  border-color: var(--ink);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 22px;
+}
+.card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: box-shadow 0.15s ease, transform 0.15s ease;
+}
+.card:hover {
+  box-shadow: var(--shadow-card-hover);
+  transform: translateY(-2px);
+}
+.media {
+  aspect-ratio: 4 / 3;
+  position: relative;
+  background: var(--tile);
+}
+.media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.tag {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: var(--ink);
+  color: #fff;
+  font: 600 9.5px/1 var(--font-body);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 6px 10px;
+  border-radius: 999px;
+}
+.body {
+  padding: 22px 22px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  flex: 1;
+}
+.name {
+  font: 700 19px/1.2 var(--font-display);
+  color: var(--ink);
+  margin: 0;
+}
+.blurb {
+  font: 400 14px/1.55 var(--font-body);
+  color: var(--muted);
+  margin: 0;
+}
+
+/* ---------- MOBILE (<768px): scrollable pills, 2-col grid ---------- */
+@media (max-width: 767px) {
+  .pills {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    gap: 9px;
+    margin: 0 -18px 26px;
+    padding: 0 18px 2px;
+    -webkit-overflow-scrolling: touch;
+  }
+  .pill {
+    font-size: 13px;
+    padding: 9px 16px;
+    white-space: nowrap;
+    flex: none;
+  }
+  .grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+  .card {
+    border-radius: 14px;
+  }
+  .tag {
+    top: 9px;
+    left: 9px;
+    font-size: 8px;
+    letter-spacing: 0.08em;
+    padding: 5px 8px;
+  }
+  .body {
+    padding: 14px 15px 16px;
+    gap: 6px;
+  }
+  .name {
+    font-size: 15px;
+  }
+  .blurb {
+    font-size: 12.5px;
+    line-height: 1.5;
+  }
+}

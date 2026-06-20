@@ -1,0 +1,189 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ProductFilter from "../components/react/ProductFilter.tsx";
+import { productsFootnote } from "../data/products";
+---
+
+<BaseLayout
+  title="Products — Sunshine Rubber Tech Resources, Co."
+  description="Molded, extruded and structural products: bridge bearings, expansion joints, gaskets, column guards, water stops, guardrails, pavement studs and road signage — manufactured to specification."
+  ogImage="/images/banners/products-banner.png"
+>
+  <!-- ===================== HERO ===================== -->
+  <section class="phero">
+    <div aria-hidden="true" class="p-glow"></div>
+    <div aria-hidden="true" class="p-rays-soft"></div>
+    <div aria-hidden="true" class="p-rays-fine"></div>
+    <div aria-hidden="true" class="p-core"></div>
+    <div class="container phero-inner">
+      <div class="phero-copy">
+        <span class="eyebrow">Our products</span>
+        <h1 class="phero-h1">Molded, extruded &amp; structural products</h1>
+        <p class="phero-lead">
+          From bridge bearings and expansion joints to gaskets, column guards and
+          road-safety signage — manufactured to specification.
+        </p>
+      </div>
+      <img
+        src="/images/banners/products-cutout.png"
+        alt="Sunshine Rubber product range"
+        class="phero-cut"
+      />
+    </div>
+  </section>
+
+  <!-- ===================== CATALOG ===================== -->
+  <section class="catalog">
+    <div class="container">
+      <ProductFilter client:load />
+      <p class="footnote">{productsFootnote}</p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .phero {
+    background: var(--hero-warm);
+    border-bottom: 1px solid var(--border);
+    padding: 96px 0 72px;
+    position: relative;
+    overflow: hidden;
+    min-height: 440px;
+    display: flex;
+    align-items: center;
+  }
+  .p-glow,
+  .p-rays-soft,
+  .p-rays-fine,
+  .p-core {
+    position: absolute;
+    pointer-events: none;
+  }
+  .p-glow {
+    top: -10%;
+    left: -6%;
+    width: 520px;
+    height: 520px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 196, 74, 0.55) 0%, rgba(255, 196, 74, 0) 70%);
+    filter: blur(6px);
+  }
+  .p-rays-soft {
+    inset: 0;
+    background: repeating-conic-gradient(from 110deg at 14% 8%, rgba(255, 221, 140, 0.55) 0deg 3deg, transparent 3deg 13deg);
+    -webkit-mask: radial-gradient(120% 120% at 14% 8%, #000 0%, rgba(0, 0, 0, 0.5) 28%, transparent 62%);
+    mask: radial-gradient(120% 120% at 14% 8%, #000 0%, rgba(0, 0, 0, 0.5) 28%, transparent 62%);
+    mix-blend-mode: soft-light;
+  }
+  .p-rays-fine {
+    inset: 0;
+    background: repeating-conic-gradient(from 113deg at 14% 8%, rgba(255, 255, 255, 0.5) 0deg 1.4deg, transparent 1.4deg 9deg);
+    -webkit-mask: radial-gradient(100% 100% at 14% 8%, #000 0%, transparent 52%);
+    mask: radial-gradient(100% 100% at 14% 8%, #000 0%, transparent 52%);
+  }
+  .p-core {
+    left: 14%;
+    top: 8%;
+    transform: translate(-50%, -50%);
+    width: 170px;
+    height: 170px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 255, 250, 0.95) 0%, rgba(255, 228, 150, 0.7) 38%, rgba(255, 210, 110, 0) 72%);
+    filter: blur(2px);
+  }
+  .phero-inner {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 32px;
+  }
+  .phero-copy {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+  .phero-h1 {
+    font: 800 52px/1.04 var(--font-display);
+    color: var(--ink);
+    letter-spacing: -0.025em;
+    margin: 16px 0 0;
+    max-width: 620px;
+  }
+  .phero-lead {
+    font: 400 17px/1.6 var(--font-body);
+    color: var(--body-2);
+    max-width: 520px;
+    margin: 18px 0 0;
+  }
+  .phero-cut {
+    flex: 0 0 auto;
+    width: 44%;
+    max-width: 520px;
+    height: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 24px 36px rgba(27, 25, 22, 0.22));
+  }
+
+  .catalog {
+    padding: 40px 0 88px;
+  }
+  .footnote {
+    font: 400 13.5px/1.6 var(--font-body);
+    color: var(--muted-3);
+    margin: 36px 0 0;
+    max-width: 760px;
+  }
+
+  @media (max-width: 900px) and (min-width: 768px) {
+    .phero-h1 {
+      font-size: 42px;
+    }
+  }
+
+  /* ---------- MOBILE (<768px) ---------- */
+  @media (max-width: 767px) {
+    .phero {
+      padding: 38px 0 0;
+      min-height: 0;
+      display: block;
+    }
+    .p-glow {
+      top: -12%;
+      left: -12%;
+      width: 340px;
+      height: 340px;
+    }
+    .p-core {
+      width: 130px;
+      height: 130px;
+    }
+    .phero-inner {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0;
+    }
+    .phero-h1 {
+      font-size: 32px;
+      line-height: 1.08;
+      margin-top: 12px;
+    }
+    .phero-lead {
+      font-size: 15px;
+      margin-top: 14px;
+      max-width: none;
+    }
+    .phero-cut {
+      width: 100%;
+      max-width: 300px;
+      margin: 22px auto 0;
+    }
+    .catalog {
+      padding: 24px 0 56px;
+    }
+    .footnote {
+      font-size: 12.5px;
+      margin-top: 28px;
+    }
+  }
+</style>

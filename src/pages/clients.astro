@@ -1,0 +1,379 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import HeroDecor from "../components/HeroDecor.astro";
+import { projects } from "../data/projects";
+import { clients } from "../data/clients";
+---
+
+<BaseLayout
+  title="Clients & Projects — Sunshine Rubber Tech Resources, Co."
+  description="Trusted across major Philippine infrastructure — TPLEX, CAVITEX, tollways and high-rises. Featured projects and a partial roster of the contractors and developers we have served."
+  ogImage="/images/banners/clients-banner.png"
+>
+  <!-- ===================== HERO (desktop) ===================== -->
+  <section class="hero-d desktop-only">
+    <img
+      src="/images/banners/clients-banner.png"
+      alt="Infrastructure and skyline"
+      class="hero-img"
+    />
+    <div aria-hidden="true" class="hero-scrim"></div>
+    <HeroDecor />
+    <div class="container hero-inner">
+      <span class="eyebrow">Clients &amp; projects</span>
+      <h1 class="hero-h1">Trusted across major infrastructure</h1>
+      <p class="hero-lead">
+        Our products are specified by leading contractors, developers and government
+        projects nationwide.
+      </p>
+    </div>
+  </section>
+
+  <!-- ===================== HERO (mobile) ===================== -->
+  <section class="hero-m mobile-only">
+    <img src="/images/banners/clients-banner.png" alt="Infrastructure" class="hero-m-img" />
+    <div aria-hidden="true" class="hero-m-grad"></div>
+    <div aria-hidden="true" class="hero-m-glow"></div>
+    <div aria-hidden="true" class="hero-m-core"></div>
+    <span class="hero-m-eyebrow">Clients &amp; projects</span>
+    <h1 class="hero-m-h1">Trusted across major infrastructure</h1>
+    <p class="hero-m-lead">
+      Our products are specified by leading contractors, developers and government
+      projects nationwide.
+    </p>
+  </section>
+
+  <!-- ===================== FEATURED PROJECTS ===================== -->
+  <section class="projects">
+    <div class="container">
+      <h2 class="h2">Featured projects</h2>
+      <div class="proj-grid">
+        {
+          projects.map((p) => (
+            <article class="proj-card">
+              <div class="proj-media">
+                <img src={p.img} alt={p.name} loading="lazy" />
+              </div>
+              <div class="proj-body">
+                <h3 class="proj-name">{p.name}</h3>
+                <p class="proj-type">{p.type}</p>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== PARTIAL CLIENT LIST ===================== -->
+  <section class="roster-sec">
+    <div class="container">
+      <h2 class="h2">Partial client list</h2>
+      <p class="roster-sub">
+        A selection of the contractors and corporations we have served.
+      </p>
+      <div class="roster">
+        {
+          clients.map((c) => (
+            <div class="roster-row">
+              <span class="roster-mark">›</span>
+              <span class="roster-name">{c}</span>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .h2 {
+    font: 800 30px/1.1 var(--font-display);
+    color: var(--ink);
+    letter-spacing: -0.02em;
+    margin: 0 0 30px;
+  }
+
+  /* ---------- HERO desktop ---------- */
+  .hero-d {
+    background: linear-gradient(180deg, #ffffff, #faf7f0);
+    border-bottom: 1px solid var(--border);
+    padding: 96px 0 72px;
+    position: relative;
+    overflow: hidden;
+    min-height: 440px;
+    display: flex;
+    align-items: center;
+  }
+  .hero-img {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    aspect-ratio: 1024 / 657;
+    object-fit: cover;
+    object-position: center;
+    -webkit-mask: linear-gradient(90deg, transparent 0%, #000 34%);
+    mask: linear-gradient(90deg, transparent 0%, #000 34%);
+    pointer-events: none;
+  }
+  .hero-scrim {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(
+      90deg,
+      #fbf8f2 0%,
+      #fbf8f2 30%,
+      rgba(251, 248, 242, 0.6) 52%,
+      rgba(251, 248, 242, 0) 78%
+    );
+  }
+  .hero-inner {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+  }
+  .hero-h1 {
+    font: 800 52px/1.04 var(--font-display);
+    color: var(--ink);
+    letter-spacing: -0.025em;
+    margin: 16px 0 0;
+  }
+  .hero-lead {
+    font: 400 17px/1.6 var(--font-body);
+    color: var(--body-2);
+    max-width: 620px;
+    margin: 18px 0 0;
+  }
+
+  @media (max-width: 900px) and (min-width: 768px) {
+    .hero-img {
+      width: 100%;
+      height: 100%;
+      aspect-ratio: auto;
+      -webkit-mask: none;
+      mask: none;
+    }
+    .hero-scrim {
+      background: linear-gradient(
+        90deg,
+        rgba(251, 248, 242, 0.94) 0%,
+        rgba(251, 248, 242, 0.88) 55%,
+        rgba(251, 248, 242, 0.74) 100%
+      );
+    }
+    .hero-h1 {
+      font-size: 44px;
+    }
+  }
+
+  /* ---------- HERO mobile ---------- */
+  .hero-m {
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid var(--border);
+    min-height: 330px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 30px var(--gutter-m) 28px;
+  }
+  .hero-m-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .hero-m-grad {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      180deg,
+      rgba(20, 18, 16, 0.12) 0%,
+      rgba(20, 18, 16, 0.34) 44%,
+      rgba(20, 18, 16, 0.8) 100%
+    );
+  }
+  .hero-m-glow {
+    position: absolute;
+    top: -12%;
+    left: -12%;
+    width: 340px;
+    height: 340px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 196, 74, 0.6) 0%, rgba(255, 196, 74, 0) 70%);
+    mix-blend-mode: screen;
+    filter: blur(6px);
+    pointer-events: none;
+  }
+  .hero-m-core {
+    position: absolute;
+    left: 14%;
+    top: 8%;
+    transform: translate(-50%, -50%);
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 255, 250, 0.9) 0%, rgba(255, 228, 150, 0.65) 38%, rgba(255, 210, 110, 0) 72%);
+    mix-blend-mode: screen;
+    filter: blur(2px);
+    pointer-events: none;
+  }
+  .hero-m-eyebrow {
+    position: relative;
+    font: 700 11px/1 var(--font-body);
+    letter-spacing: 0.14em;
+    color: var(--hero-eyebrow-mobile);
+    text-transform: uppercase;
+    text-shadow: 0 1px 8px rgba(0, 0, 0, 0.6), 0 0 2px rgba(0, 0, 0, 0.5);
+  }
+  .hero-m-h1 {
+    position: relative;
+    font: 800 31px/1.1 var(--font-display);
+    color: #fff;
+    letter-spacing: -0.025em;
+    margin: 12px 0 0;
+    text-shadow: 0 2px 18px rgba(0, 0, 0, 0.4);
+  }
+  .hero-m-lead {
+    position: relative;
+    font: 400 15px/1.6 var(--font-body);
+    color: rgba(255, 255, 255, 0.9);
+    margin: 14px 0 0;
+    text-shadow: 0 1px 12px rgba(0, 0, 0, 0.35);
+  }
+
+  /* ---------- FEATURED PROJECTS ---------- */
+  .projects {
+    padding: 72px 0 40px;
+  }
+  .proj-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+  }
+  .proj-card {
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    background: var(--surface);
+  }
+  .proj-media {
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    background: var(--tile);
+  }
+  .proj-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .proj-body {
+    padding: 20px 22px;
+  }
+  .proj-name {
+    font: 700 18px/1.2 var(--font-display);
+    color: var(--ink);
+    margin: 0;
+  }
+  .proj-type {
+    font: 500 13px/1.4 var(--font-body);
+    color: var(--muted-3);
+    margin: 7px 0 0;
+    letter-spacing: 0.02em;
+  }
+
+  /* ---------- ROSTER ---------- */
+  .roster-sec {
+    padding: 48px 0 92px;
+  }
+  .roster-sec .h2 {
+    margin: 0 0 8px;
+  }
+  .roster-sub {
+    font: 400 14.5px/1.5 var(--font-body);
+    color: var(--muted-3);
+    margin: 0 0 30px;
+  }
+  .roster {
+    columns: 3;
+    column-gap: 48px;
+  }
+  .roster-row {
+    break-inside: avoid;
+    display: flex;
+    gap: 11px;
+    align-items: flex-start;
+    padding: 9px 0;
+    border-bottom: 1px solid #ece7dc;
+  }
+  .roster-mark {
+    color: var(--accent);
+    font: 700 14px/1.5 var(--font-body);
+    flex: none;
+  }
+  .roster-name {
+    font: 500 14.5px/1.5 var(--font-body);
+    color: var(--body);
+  }
+
+  @media (max-width: 900px) and (min-width: 768px) {
+    .proj-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .roster {
+      columns: 2;
+    }
+  }
+
+  /* ---------- MOBILE (<768px) ---------- */
+  @media (max-width: 767px) {
+    .projects {
+      padding: 40px 0 24px;
+    }
+    .h2 {
+      font-size: 24px;
+      margin: 0 0 22px;
+    }
+    .proj-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    .proj-card {
+      border-radius: 14px;
+    }
+    .proj-media {
+      aspect-ratio: 16 / 11;
+    }
+    .proj-body {
+      padding: 14px 14px 15px;
+    }
+    .proj-name {
+      font-size: 14.5px;
+    }
+    .proj-type {
+      font-size: 11px;
+      margin: 6px 0 0;
+    }
+
+    .roster-sec {
+      padding: 24px 0 56px;
+    }
+    .roster-sub {
+      font-size: 13.5px;
+      margin: 0 0 22px;
+    }
+    .roster {
+      columns: 1;
+    }
+    .roster-row {
+      gap: 10px;
+    }
+    .roster-name {
+      font-size: 14px;
+    }
+  }
+</style>

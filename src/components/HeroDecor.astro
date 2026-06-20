@@ -1,0 +1,83 @@
+---
+/**
+ * Decorative "sunburst" glow stack used behind the light photo heroes
+ * (About / Clients / Contact desktop). Purely decorative — aria-hidden.
+ * Values lifted verbatim from the design references.
+ */
+---
+
+<div aria-hidden="true" class="glow"></div>
+<div aria-hidden="true" class="rays-soft"></div>
+<div aria-hidden="true" class="rays-fine"></div>
+<div aria-hidden="true" class="core"></div>
+
+<style>
+  .glow,
+  .rays-soft,
+  .rays-fine,
+  .core {
+    position: absolute;
+    pointer-events: none;
+  }
+
+  .glow {
+    top: -16%;
+    left: 4%;
+    width: 760px;
+    height: 760px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 196, 74, 0.55) 0%, rgba(255, 196, 74, 0) 70%);
+    filter: blur(6px);
+  }
+
+  .rays-soft {
+    inset: 0;
+    background: repeating-conic-gradient(from 158deg at 14% 8%, rgba(255, 221, 140, 0.5) 0deg 4deg, transparent 4deg 15deg);
+    -webkit-mask:
+      radial-gradient(210% 165% at 14% 8%, #000 0%, rgba(0, 0, 0, 0.42) 44%, transparent 84%),
+      linear-gradient(90deg, transparent 8%, #000 32%);
+    -webkit-mask-composite: source-in;
+    mask:
+      radial-gradient(210% 165% at 14% 8%, #000 0%, rgba(0, 0, 0, 0.42) 44%, transparent 84%),
+      linear-gradient(90deg, transparent 8%, #000 32%);
+    mask-composite: intersect;
+    mix-blend-mode: soft-light;
+    filter: blur(2px);
+  }
+
+  .rays-fine {
+    inset: 0;
+    background: repeating-conic-gradient(from 161deg at 14% 8%, rgba(255, 255, 255, 0.42) 0deg 2deg, transparent 2deg 12deg);
+    -webkit-mask:
+      radial-gradient(180% 150% at 14% 8%, #000 0%, transparent 70%),
+      linear-gradient(90deg, transparent 2%, #000 22%);
+    -webkit-mask-composite: source-in;
+    mask:
+      radial-gradient(180% 150% at 14% 8%, #000 0%, transparent 70%),
+      linear-gradient(90deg, transparent 2%, #000 22%);
+    mask-composite: intersect;
+    filter: blur(1.2px);
+  }
+
+  .core {
+    left: 14%;
+    top: 8%;
+    transform: translate(-50%, -50%);
+    width: 170px;
+    height: 170px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 255, 250, 0.95) 0%, rgba(255, 228, 150, 0.7) 38%, rgba(255, 210, 110, 0) 72%);
+    filter: blur(2px);
+  }
+
+  /* Below the breakpoint these light-hero decorations are not used (mobile heroes
+     are full-bleed photo) — hide to avoid bleed. */
+  @media (max-width: 767px) {
+    .glow,
+    .rays-soft,
+    .rays-fine,
+    .core {
+      display: none;
+    }
+  }
+</style>

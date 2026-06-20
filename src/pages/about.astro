@@ -1,0 +1,432 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import HeroDecor from "../components/HeroDecor.astro";
+import {
+  historyParagraphs,
+  timeline,
+  vision,
+  missions,
+  machinery,
+} from "../data/company";
+---
+
+<BaseLayout
+  title="About — Sunshine Rubber Tech Resources, Co."
+  description="Three decades of molded and extruded rubber for Philippine infrastructure. Our history, vision, mission and in-house manufacturing capability since 1991."
+  ogImage="/images/about-factory.png"
+>
+  <!-- ===================== HERO (desktop) ===================== -->
+  <section class="hero-d desktop-only">
+    <img
+      src="/images/about-factory.png"
+      alt="Sunshine Rubber Tech factory floor"
+      class="hero-img"
+    />
+    <div aria-hidden="true" class="hero-scrim"></div>
+    <HeroDecor />
+    <div class="container hero-inner">
+      <span class="eyebrow">About the company</span>
+      <h1 class="hero-h1">
+        Three decades of molded and extruded rubber for Philippine infrastructure.
+      </h1>
+    </div>
+  </section>
+
+  <!-- ===================== HERO (mobile) ===================== -->
+  <section class="hero-m mobile-only">
+    <img src="/images/about-factory.png" alt="Factory floor" class="hero-m-img" />
+    <div aria-hidden="true" class="hero-m-grad"></div>
+    <div aria-hidden="true" class="hero-m-glow"></div>
+    <div aria-hidden="true" class="hero-m-core"></div>
+    <span class="hero-m-eyebrow">About the company</span>
+    <h1 class="hero-m-h1">
+      Three decades of molded and extruded rubber for Philippine infrastructure.
+    </h1>
+  </section>
+
+  <!-- ===================== HISTORY + TIMELINE ===================== -->
+  <section class="history">
+    <div class="container history-grid">
+      <div class="history-copy">
+        {historyParagraphs.map((p) => <p class="history-p">{p}</p>)}
+      </div>
+      <div class="timeline">
+        {
+          timeline.map((t) => (
+            <div class="tl-card">
+              <div class="tl-year">{t.year}</div>
+              <div>
+                <h3 class="tl-title">{t.title}</h3>
+                <p class="tl-desc">{t.desc}</p>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== VISION / MISSION ===================== -->
+  <section class="vm">
+    <div class="container vm-grid">
+      <div>
+        <span class="eyebrow eyebrow-sun">Our vision</span>
+        <p class="vision">{vision}</p>
+      </div>
+      <div>
+        <span class="eyebrow eyebrow-sun">Our mission</span>
+        <div class="missions">
+          {
+            missions.map((m) => (
+              <div class="mission">
+                <span class="mission-dot"></span>
+                <p class="mission-text">{m}</p>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== MACHINERY ===================== -->
+  <section class="machinery">
+    <div class="container">
+      <span class="eyebrow">In-house capability</span>
+      <h2 class="h2">Our machinery</h2>
+      <div class="mach-grid">
+        {machinery.map((m) => <div class="mach-chip">{m}</div>)}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .eyebrow-sun {
+    color: var(--sun);
+  }
+  .h2 {
+    font: 800 36px/1.1 var(--font-display);
+    color: var(--ink);
+    letter-spacing: -0.02em;
+    margin: 14px 0 36px;
+  }
+
+  /* ---------- HERO desktop ---------- */
+  .hero-d {
+    background: linear-gradient(180deg, #ffffff, #faf7f0);
+    border-bottom: 1px solid var(--border);
+    padding: 96px 0 72px;
+    position: relative;
+    overflow: hidden;
+    min-height: 440px;
+    display: flex;
+    align-items: center;
+  }
+  .hero-img {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    aspect-ratio: 1744 / 608;
+    object-fit: cover;
+    object-position: center;
+    -webkit-mask: linear-gradient(90deg, transparent 0%, #000 34%);
+    mask: linear-gradient(90deg, transparent 0%, #000 34%);
+    pointer-events: none;
+  }
+  .hero-scrim {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(
+      90deg,
+      #fbf8f2 0%,
+      #fbf8f2 30%,
+      rgba(251, 248, 242, 0.6) 52%,
+      rgba(251, 248, 242, 0) 78%
+    );
+  }
+  .hero-inner {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+  }
+  .hero-h1 {
+    font: 800 52px/1.04 var(--font-display);
+    color: var(--ink);
+    letter-spacing: -0.025em;
+    margin: 16px 0 0;
+    max-width: 780px;
+  }
+
+  /* tablet band (768–900): drop the photo mask, widen the scrim (per handoff) */
+  @media (max-width: 900px) and (min-width: 768px) {
+    .hero-img {
+      width: 100%;
+      height: 100%;
+      aspect-ratio: auto;
+      -webkit-mask: none;
+      mask: none;
+    }
+    .hero-scrim {
+      background: linear-gradient(
+        90deg,
+        rgba(251, 248, 242, 0.94) 0%,
+        rgba(251, 248, 242, 0.88) 55%,
+        rgba(251, 248, 242, 0.74) 100%
+      );
+    }
+    .hero-h1 {
+      font-size: 44px;
+    }
+  }
+
+  /* ---------- HERO mobile ---------- */
+  .hero-m {
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid var(--border);
+    min-height: 330px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 30px var(--gutter-m) 28px;
+  }
+  .hero-m-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .hero-m-grad {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      180deg,
+      rgba(20, 18, 16, 0.12) 0%,
+      rgba(20, 18, 16, 0.34) 44%,
+      rgba(20, 18, 16, 0.8) 100%
+    );
+  }
+  .hero-m-glow {
+    position: absolute;
+    top: -12%;
+    left: -12%;
+    width: 340px;
+    height: 340px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 196, 74, 0.6) 0%, rgba(255, 196, 74, 0) 70%);
+    mix-blend-mode: screen;
+    filter: blur(6px);
+    pointer-events: none;
+  }
+  .hero-m-core {
+    position: absolute;
+    left: 14%;
+    top: 8%;
+    transform: translate(-50%, -50%);
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 255, 250, 0.9) 0%, rgba(255, 228, 150, 0.65) 38%, rgba(255, 210, 110, 0) 72%);
+    mix-blend-mode: screen;
+    filter: blur(2px);
+    pointer-events: none;
+  }
+  .hero-m-eyebrow {
+    position: relative;
+    font: 700 11px/1 var(--font-body);
+    letter-spacing: 0.14em;
+    color: var(--hero-eyebrow-mobile);
+    text-transform: uppercase;
+    text-shadow: 0 1px 8px rgba(0, 0, 0, 0.6), 0 0 2px rgba(0, 0, 0, 0.5);
+  }
+  .hero-m-h1 {
+    position: relative;
+    font: 800 31px/1.1 var(--font-display);
+    color: #fff;
+    letter-spacing: -0.025em;
+    margin: 12px 0 0;
+    text-shadow: 0 2px 18px rgba(0, 0, 0, 0.4);
+  }
+
+  /* ---------- HISTORY ---------- */
+  .history {
+    padding: 72px 0;
+  }
+  .history-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 56px;
+  }
+  .history-p {
+    font: 400 17px/1.7 var(--font-body);
+    color: var(--body);
+    margin: 0;
+  }
+  .history-p + .history-p {
+    margin-top: 22px;
+  }
+  .timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+  .tl-card {
+    display: flex;
+    gap: 22px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 24px 26px;
+  }
+  .tl-year {
+    font: 800 26px/1 var(--font-display);
+    color: var(--accent);
+    min-width: 64px;
+  }
+  .tl-title {
+    font: 700 18px/1.2 var(--font-display);
+    color: var(--ink);
+    margin: 0;
+  }
+  .tl-desc {
+    font: 400 14.5px/1.55 var(--font-body);
+    color: var(--muted);
+    margin: 8px 0 0;
+  }
+
+  /* ---------- VISION / MISSION ---------- */
+  .vm {
+    background: var(--ink);
+    color: #fff;
+    padding: 76px 0;
+  }
+  .vm-grid {
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    gap: 56px;
+  }
+  .vision {
+    font: 600 26px/1.4 var(--font-display);
+    color: #fff;
+    margin: 18px 0 0;
+  }
+  .missions {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    margin-top: 18px;
+  }
+  .mission {
+    display: flex;
+    gap: 16px;
+    border-top: 1px solid var(--dark-divider);
+    padding-top: 18px;
+  }
+  .mission-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+    margin-top: 8px;
+    flex: none;
+  }
+  .mission-text {
+    font: 400 16.5px/1.55 var(--font-body);
+    color: var(--on-dark-2);
+    margin: 0;
+  }
+
+  /* ---------- MACHINERY ---------- */
+  .machinery {
+    padding: 80px 0;
+  }
+  .mach-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+  }
+  .mach-chip {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px 22px;
+    font: 600 15px/1.35 var(--font-body);
+    color: var(--body);
+  }
+
+  /* ---------- MOBILE (<768px) ---------- */
+  @media (max-width: 767px) {
+    .history {
+      padding: 40px 0;
+    }
+    .history-grid {
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+    .history-p {
+      font-size: 15.5px;
+    }
+    .history-p + .history-p {
+      margin-top: 18px;
+    }
+    .timeline {
+      gap: 14px;
+      margin-top: 32px;
+    }
+    .tl-card {
+      gap: 18px;
+      padding: 20px;
+    }
+    .tl-year {
+      font-size: 22px;
+      min-width: 52px;
+    }
+    .tl-title {
+      font-size: 17px;
+    }
+    .tl-desc {
+      font-size: 14px;
+      margin-top: 7px;
+    }
+
+    .vm {
+      padding: 44px 0;
+    }
+    .vm-grid {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+    .vision {
+      font-size: 21px;
+      margin: 14px 0 0;
+    }
+    .mission-text {
+      font-size: 15px;
+    }
+    .mission-dot {
+      width: 7px;
+      height: 7px;
+      margin-top: 7px;
+    }
+
+    .machinery {
+      padding: 42px 0;
+    }
+    .h2 {
+      font-size: 26px;
+      margin: 12px 0 22px;
+    }
+    .mach-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .mach-chip {
+      padding: 15px 16px;
+      font-size: 13.5px;
+    }
+  }
+</style>

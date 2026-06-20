@@ -1,0 +1,203 @@
+---
+import { footerLinks } from "../data/nav";
+import { companyBlurb, copyright, location } from "../data/contact";
+---
+
+<!-- Desktop footer (>=768px) -->
+<footer class="ft desktop-only">
+  <div class="container">
+    <div class="ft-grid">
+      <div>
+        <div class="ft-brand">
+          <img src="/images/sunshine-logo.svg" alt="" width="58" height="58" class="ft-logo" />
+          <span class="ft-brand-text">
+            <span class="ft-name">SUNSHINE RUBBER</span>
+            <span class="ft-sub">TECH RESOURCES, CO.</span>
+          </span>
+        </div>
+        <p class="ft-blurb">{companyBlurb}</p>
+      </div>
+      <div>
+        <span class="ft-label">Explore</span>
+        <div class="ft-links">
+          {footerLinks.map((l) => <a href={l.href} class="ft-link">{l.label}</a>)}
+        </div>
+      </div>
+      <div>
+        <span class="ft-label">Contact</span>
+        <p class="ft-contact">
+          2070 Candido Street, SEAMCOP Compound,<br />
+          Mapulang Lupa, Valenzuela City 1448<br /><br />
+          7002-4927 · 0925-544-6200<br />
+          info@sunshinerubberph.com
+        </p>
+      </div>
+    </div>
+    <div class="ft-bottom">
+      <span>{copyright}</span>
+      <span>{location}</span>
+    </div>
+  </div>
+</footer>
+
+<!-- Mobile footer (<768px) -->
+<footer class="ft-m mobile-only">
+  <div class="ft-brand">
+    <img src="/images/sunshine-logo.svg" alt="" width="48" height="48" class="ft-logo-m" />
+    <span class="ft-brand-text">
+      <span class="ft-name-m">SUNSHINE RUBBER</span>
+      <span class="ft-sub-m">TECH RESOURCES, CO.</span>
+    </span>
+  </div>
+  <p class="ft-blurb-m">{companyBlurb}</p>
+  <div class="ft-explore-m">
+    <span class="ft-label">Explore</span>
+    <div class="ft-links-m">
+      {footerLinks.map((l) => <a href={l.href} class="ft-link">{l.label}</a>)}
+    </div>
+  </div>
+  <p class="ft-contact-m">
+    2070 Candido Street, SEAMCOP Compound,<br />
+    Mapulang Lupa, Valenzuela City 1448<br />
+    7002-4927 · 0925-544-6200<br />
+    info@sunshinerubberph.com
+  </p>
+  <p class="ft-copy-m">
+    © 1991–2026 Sunshine Rubber Tech Resources Co.<br />
+    All rights reserved · Valenzuela City, Philippines
+  </p>
+</footer>
+
+<style>
+  .ft {
+    background: var(--footer);
+    color: #fff;
+    padding: 64px 0 36px;
+  }
+  .ft-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr;
+    gap: 40px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid var(--footer-divider);
+  }
+  .ft-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .ft-logo {
+    width: 58px;
+    height: 58px;
+    object-fit: contain;
+    display: block;
+  }
+  .ft-brand-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1;
+  }
+  .ft-name {
+    font: 800 21px/1 var(--font-display);
+  }
+  .ft-sub {
+    font: 600 11px/1.4 var(--font-body);
+    letter-spacing: 0.26em;
+    color: var(--brand-sub);
+    margin-top: 4px;
+  }
+  .ft-blurb {
+    font: 400 14px/1.6 var(--font-body);
+    color: var(--footer-blurb);
+    max-width: 340px;
+    margin: 20px 0 0;
+  }
+  .ft-label {
+    font: 600 11px/1 var(--font-body);
+    letter-spacing: 0.14em;
+    color: var(--footer-label);
+    text-transform: uppercase;
+  }
+  .ft-links {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    margin-top: 18px;
+  }
+  .ft-link {
+    font: 500 15px/1 var(--font-body);
+    color: var(--on-dark-3);
+    text-decoration: none;
+  }
+  .ft-link:hover {
+    color: #fff;
+  }
+  .ft-contact {
+    font: 400 14px/1.7 var(--font-body);
+    color: var(--on-dark-3);
+    margin: 18px 0 0;
+  }
+  .ft-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding-top: 26px;
+    font: 400 13px/1 var(--font-body);
+    color: var(--footer-label);
+  }
+
+  /* ---- Mobile ---- */
+  .ft-m {
+    background: var(--footer);
+    color: #fff;
+    padding: 40px var(--gutter-m) 28px;
+  }
+  .ft-logo-m {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+    display: block;
+  }
+  .ft-name-m {
+    font: 800 17px/1 var(--font-display);
+  }
+  .ft-sub-m {
+    font: 600 9px/1.4 var(--font-body);
+    letter-spacing: 0.22em;
+    color: var(--brand-sub);
+    margin-top: 3px;
+  }
+  .ft-blurb-m {
+    font: 400 13.5px/1.6 var(--font-body);
+    color: var(--footer-blurb);
+    margin: 18px 0 26px;
+  }
+  .ft-explore-m {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--footer-divider);
+  }
+  .ft-links-m {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+  }
+  .ft-links-m .ft-link {
+    font: 500 14px/1 var(--font-body);
+  }
+  .ft-contact-m {
+    font: 400 13px/1.7 var(--font-body);
+    color: var(--on-dark-3);
+    margin: 22px 0 0;
+  }
+  .ft-copy-m {
+    font: 400 12px/1.6 var(--font-body);
+    color: var(--footer-label);
+    margin: 24px 0 0;
+  }
+</style>

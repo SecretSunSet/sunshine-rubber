@@ -1,0 +1,12 @@
+{
+  "name": "sunshine-rubber-functions",
+  "private": true,
+  "main": "index.js",
+  "engines": {
+    "node": "20"
+  },
+  "dependencies": {
+    "firebase-functions": "^6.4.0",
+    "resend": "^4.1.2"
+  }
+}

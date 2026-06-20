@@ -1,0 +1,126 @@
+.card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 34px;
+}
+.heading {
+  font: 700 22px/1.2 var(--font-display);
+  color: var(--ink);
+  margin: 0 0 22px;
+}
+.fields {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+.label {
+  font: 600 12.5px/1 var(--font-body);
+  color: var(--body-2);
+}
+.input,
+.textarea {
+  border: 1px solid var(--border-pill);
+  border-radius: 9px;
+  padding: 13px 14px;
+  font: 400 15px/1 var(--font-body);
+  color: var(--ink);
+  background: var(--bg);
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.textarea {
+  line-height: 1.5;
+  resize: vertical;
+}
+.input:focus,
+.textarea:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(232, 115, 15, 0.14);
+}
+.inputError {
+  border-color: var(--accent-crimson);
+}
+.errorText {
+  font: 500 12px/1.4 var(--font-body);
+  color: var(--accent-crimson);
+}
+
+.submit {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font: 700 15px/1 var(--font-body);
+  padding: 16px;
+  border-radius: 999px;
+  margin-top: 4px;
+  transition: filter 0.15s ease;
+}
+.submit:hover:not(:disabled) {
+  filter: brightness(0.93);
+}
+.submit:disabled {
+  opacity: 0.7;
+  cursor: progress;
+}
+
+.banner {
+  border-radius: 9px;
+  padding: 13px 14px;
+  font: 500 14px/1.45 var(--font-body);
+}
+.bannerSuccess {
+  background: #eef7ee;
+  border: 1px solid #cfe6cf;
+  color: #2e6b35;
+}
+.bannerError {
+  background: #fbecec;
+  border: 1px solid #f0cfcf;
+  color: #9a2b22;
+}
+
+/* Success state replaces the form body. */
+.successWrap {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.successTitle {
+  font: 700 20px/1.25 var(--font-display);
+  color: var(--ink);
+  margin: 0;
+}
+.successText {
+  font: 400 15px/1.6 var(--font-body);
+  color: var(--muted);
+  margin: 0;
+}
+
+@media (max-width: 767px) {
+  .card {
+    padding: 34px 22px;
+  }
+  .heading {
+    font-size: 20px;
+    margin: 0 0 20px;
+  }
+  .fields {
+    gap: 14px;
+  }
+  .field {
+    gap: 6px;
+  }
+  .label {
+    font-size: 12px;
+  }
+  .submit {
+    margin-top: 2px;
+  }
+}

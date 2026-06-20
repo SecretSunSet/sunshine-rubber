@@ -1,0 +1,795 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { stats, categoryCards, features } from "../data/company";
+import { clientLogos } from "../data/clients";
+
+const catHref = (filter: string) => `/products?cat=${encodeURIComponent(filter)}`;
+---
+
+<BaseLayout
+  title="Sunshine Rubber Tech Resources, Co. — Molded & extruded rubber and structural products"
+  description="Philippine manufacturer of molded and extruded rubber, bridge bearings, expansion joints, gaskets, guardrails and road signage since 1991. Engineered for the structures that move."
+>
+  <!-- ===================== HERO ===================== -->
+  <section class="hero">
+    <div aria-hidden="true" class="sun-glow"></div>
+    <div aria-hidden="true" class="sun-rays"></div>
+    <div aria-hidden="true" class="sun-rays2"></div>
+    <div aria-hidden="true" class="sun-core"></div>
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <div class="eyebrow-pill">
+          <span class="eyebrow-dot"></span>
+          <span class="eyebrow-label desktop-only"
+            >Industrial Rubber · Structural Systems · Since 1991</span
+          >
+          <span class="eyebrow-label mobile-only">Industrial Rubber · Since 1991</span>
+        </div>
+        <h1 class="hero-h1">Engineered rubber for the structures that move.</h1>
+        <p class="hero-lead desktop-only">
+          Sunshine Rubber Tech Resources manufactures high-quality molded and extruded
+          rubber, bridge bearings, expansion joints and road-safety systems — trusted on
+          the Philippines' major infrastructure for over three decades.
+        </p>
+        <p class="hero-lead mobile-only">
+          High-quality molded and extruded rubber, bridge bearings, expansion joints and
+          road-safety systems — trusted on the Philippines' major infrastructure for over
+          three decades.
+        </p>
+        <div class="hero-actions">
+          <a href="/products" class="btn btn-accent">Explore Products</a>
+          <a href="/contact" class="btn btn-outline">Request a Quote</a>
+        </div>
+        <div class="hero-stats">
+          {
+            stats.map((s) => (
+              <div class="stat">
+                <div class="stat-value">
+                  {s.value}
+                  {s.suffix && <span class="stat-suffix">{s.suffix}</span>}
+                </div>
+                <div class="stat-label">{s.label}</div>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+
+      <div class="mosaic">
+        <figure class="tile tile-tall">
+          <img src="/images/products/bearing-pad.png" alt="Bearing pad" />
+          <figcaption class="chip">Bearing Pad</figcaption>
+        </figure>
+        <figure class="tile">
+          <img src="/images/products/expansion-joint.png" alt="Expansion joint" />
+          <figcaption class="chip">Expansion Joint</figcaption>
+        </figure>
+        <div class="tile aashto">
+          <span class="aashto-title">Built to AASHTO spec</span>
+          <span class="aashto-sub"
+            >Guardrails, signage & joints to engineering-grade standards.</span
+          >
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CLIENT LOGO WALL ===================== -->
+  <section class="logos">
+    <div class="container">
+      <span class="logos-eyebrow"
+        >Trusted by the Philippines' leading contractors &amp; developers</span
+      >
+      <div class="logos-row">
+        {
+          clientLogos.map((logo) => (
+            <img class="logo" src={logo.src} alt={logo.alt} loading="lazy" />
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CATEGORY PREVIEW ===================== -->
+  <section class="cats">
+    <div class="container">
+      <div class="cats-head">
+        <div>
+          <span class="eyebrow">What we make</span>
+          <h2 class="h2">Three lines of products</h2>
+        </div>
+        <a href="/products" class="cats-viewall">View all products →</a>
+      </div>
+      <div class="cats-grid">
+        {
+          categoryCards.map((c) => (
+            <a class="cat-card" href={catHref(c.filter)}>
+              <span class="cat-num">{c.num}</span>
+              <h3 class="cat-title">{c.title}</h3>
+              <p class="cat-desc">{c.desc}</p>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== WHY US ===================== -->
+  <section class="why">
+    <div class="container">
+      <div class="why-head">
+        <span class="eyebrow eyebrow-sun">Why Sunshine Rubber</span>
+        <h2 class="h2 h2-light">Quality and prompt delivery, second to none.</h2>
+      </div>
+      <div class="why-grid">
+        {
+          features.map((f) => (
+            <div class="why-item">
+              <h3 class="why-title">{f.title}</h3>
+              <p class="why-desc">{f.desc}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CTA BAND ===================== -->
+  <section class="cta">
+    <div class="container">
+      <div class="cta-card">
+        <div class="cta-copy">
+          <h2 class="cta-h2">Need a custom rubber or structural component?</h2>
+          <p class="cta-sub">
+            Send us your specifications — we mold, extrude and fabricate to requirement.
+          </p>
+        </div>
+        <a href="/contact" class="cta-btn">Get in touch</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* ---------- shared buttons ---------- */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font: 700 15px/1 var(--font-body);
+    border-radius: var(--r-pill);
+    text-decoration: none;
+    cursor: pointer;
+    transition: filter 0.15s ease, background 0.15s ease, color 0.15s ease;
+  }
+  .btn-accent {
+    background: var(--accent);
+    color: #fff;
+    padding: 16px 28px;
+  }
+  .btn-accent:hover {
+    filter: brightness(0.93);
+  }
+  .btn-outline {
+    background: none;
+    color: var(--ink);
+    border: 1px solid var(--ink);
+    padding: 16px 28px;
+  }
+  .btn-outline:hover {
+    background: var(--ink);
+    color: #fff;
+  }
+
+  /* shared section headings */
+  .h2 {
+    font: 800 40px/1.08 var(--font-display);
+    color: var(--ink);
+    letter-spacing: -0.02em;
+    margin: 14px 0 0;
+  }
+  .h2-light {
+    color: #fff;
+  }
+  .eyebrow-sun {
+    color: var(--sun);
+  }
+
+  /* ---------- HERO ---------- */
+  .hero {
+    background: var(--bg);
+    padding: 76px 0 92px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: 60px;
+    align-items: center;
+    position: relative;
+  }
+
+  /* ---- Home hero sunlight (decorative, animated) ---- */
+  .sun-glow,
+  .sun-rays,
+  .sun-rays2,
+  .sun-core {
+    position: absolute;
+    pointer-events: none;
+  }
+  .sun-glow {
+    top: -12%;
+    left: -3%;
+    width: 520px;
+    height: 520px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 196, 74, 0.5) 0%, rgba(255, 196, 74, 0) 70%);
+    filter: blur(6px);
+    animation: sunGlow 6s ease-in-out infinite;
+  }
+  .sun-rays {
+    inset: 0;
+    background: repeating-conic-gradient(from 110deg at 12% 6%, rgba(255, 221, 140, 0.55) 0deg 3deg, transparent 3deg 13deg);
+    -webkit-mask: radial-gradient(120% 120% at 12% 6%, #000 0%, rgba(0, 0, 0, 0.5) 28%, transparent 62%);
+    mask: radial-gradient(120% 120% at 12% 6%, #000 0%, rgba(0, 0, 0, 0.5) 28%, transparent 62%);
+    mix-blend-mode: soft-light;
+    transform-origin: 12% 6%;
+    animation: sunSpin 140s linear infinite;
+  }
+  .sun-rays2 {
+    inset: 0;
+    background: repeating-conic-gradient(from 113deg at 12% 6%, rgba(255, 255, 255, 0.5) 0deg 1.4deg, transparent 1.4deg 9deg);
+    -webkit-mask: radial-gradient(100% 100% at 12% 6%, #000 0%, transparent 52%);
+    mask: radial-gradient(100% 100% at 12% 6%, #000 0%, transparent 52%);
+    transform-origin: 12% 6%;
+    animation: sunSpinRev 90s linear infinite;
+  }
+  .sun-core {
+    left: 12%;
+    top: 6%;
+    width: 170px;
+    height: 170px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 255, 250, 0.95) 0%, rgba(255, 228, 150, 0.7) 38%, rgba(255, 210, 110, 0) 72%);
+    filter: blur(2px);
+    transform: translate(-50%, -50%);
+    animation: sunPulse 6s ease-in-out infinite;
+  }
+  .eyebrow-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    border: 1px solid var(--border-pill);
+    border-radius: var(--r-pill);
+    padding: 7px 15px;
+  }
+  .eyebrow-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+  .eyebrow-label {
+    font: 600 11.5px/1 var(--font-body);
+    letter-spacing: 0.16em;
+    color: var(--muted-2);
+    text-transform: uppercase;
+  }
+  .hero-h1 {
+    font: 800 57px/1.04 var(--font-display);
+    color: var(--ink);
+    letter-spacing: -0.025em;
+    margin: 22px 0 0;
+  }
+  .hero-lead {
+    font: 400 18px/1.62 var(--font-body);
+    color: var(--body-2);
+    max-width: 520px;
+    margin: 24px 0 0;
+  }
+  .hero-actions {
+    display: flex;
+    gap: 14px;
+    margin-top: 34px;
+  }
+  .hero-stats {
+    display: flex;
+    gap: 40px;
+    margin-top: 48px;
+  }
+  .stat-value {
+    font: 800 32px/1 var(--font-display);
+    color: var(--ink);
+  }
+  .stat-suffix {
+    color: var(--accent);
+  }
+  .stat-label {
+    font: 500 13px/1.4 var(--font-body);
+    color: var(--muted-2);
+    margin-top: 6px;
+  }
+
+  /* mosaic */
+  .mosaic {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 16px;
+    height: 480px;
+  }
+  .tile {
+    border-radius: var(--r-lg);
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    padding: 18px;
+    background: var(--tile);
+  }
+  .tile img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .tile.tile-tall {
+    grid-row: span 2;
+    border: 1px solid var(--border-pill);
+  }
+  .mosaic figure {
+    margin: 0;
+    border: 1px solid var(--border-pill);
+  }
+  .chip {
+    position: relative;
+    font: 600 11px/1 var(--font-body);
+    letter-spacing: 0.12em;
+    color: #fff;
+    text-transform: uppercase;
+    background: rgba(27, 25, 22, 0.82);
+    padding: 7px 11px;
+    border-radius: 7px;
+  }
+  .aashto {
+    background: var(--sun);
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 22px;
+  }
+  .aashto-title {
+    font: 700 13px/1.3 var(--font-body);
+    color: var(--ink);
+    letter-spacing: 0.02em;
+  }
+  .aashto-sub {
+    font: 400 12.5px/1.5 var(--font-body);
+    color: var(--sun-ink);
+    margin-top: 8px;
+  }
+
+  /* ---------- LOGO WALL ---------- */
+  .logos {
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 40px 0 44px;
+  }
+  .logos .container {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+  .logos-eyebrow {
+    font: 600 12px/1.4 var(--font-body);
+    letter-spacing: 0.16em;
+    color: var(--muted-3);
+    text-transform: uppercase;
+    text-align: center;
+  }
+  .logos-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 28px;
+    flex-wrap: wrap;
+  }
+  .logo {
+    flex: 1;
+    min-width: 120px;
+    height: 64px;
+    object-fit: contain;
+    filter: grayscale(1);
+  }
+
+  /* ---------- CATEGORY PREVIEW ---------- */
+  .cats {
+    padding: 88px 0;
+  }
+  .cats-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 24px;
+    margin-bottom: 40px;
+  }
+  .cats-viewall {
+    font: 700 15px/1 var(--font-body);
+    color: var(--accent);
+    white-space: nowrap;
+    text-decoration: none;
+  }
+  .cats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+  }
+  .cat-card {
+    text-align: left;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--r-card);
+    padding: 30px 28px 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    text-decoration: none;
+    transition: box-shadow 0.15s ease, transform 0.15s ease;
+  }
+  .cat-card:hover {
+    box-shadow: var(--shadow-card-hover);
+    transform: translateY(-2px);
+  }
+  .cat-num {
+    font: 800 22px/1 var(--font-display);
+    color: var(--accent);
+  }
+  .cat-title {
+    font: 700 21px/1.2 var(--font-display);
+    color: var(--ink);
+    margin: 0;
+  }
+  .cat-desc {
+    font: 400 14.5px/1.55 var(--font-body);
+    color: var(--muted);
+    margin: 0;
+  }
+
+  /* ---------- WHY US ---------- */
+  .why {
+    background: var(--ink);
+    color: #fff;
+    padding: 84px 0;
+  }
+  .why-head {
+    max-width: 560px;
+  }
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    margin-top: 48px;
+  }
+  .why-item {
+    border-top: 2px solid var(--accent);
+    padding-top: 22px;
+  }
+  .why-title {
+    font: 700 18px/1.25 var(--font-display);
+    color: #fff;
+    margin: 0;
+  }
+  .why-desc {
+    font: 400 14px/1.55 var(--font-body);
+    color: var(--on-dark);
+    margin: 12px 0 0;
+  }
+
+  /* ---------- CTA ---------- */
+  .cta {
+    padding: 84px 0;
+  }
+  .cta-card {
+    background: var(--sun);
+    border-radius: var(--r-xl);
+    padding: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+  .cta-copy {
+    max-width: 560px;
+  }
+  .cta-h2 {
+    font: 800 34px/1.12 var(--font-display);
+    color: var(--ink);
+    letter-spacing: -0.02em;
+    margin: 0;
+  }
+  .cta-sub {
+    font: 400 16px/1.55 var(--font-body);
+    color: var(--sun-ink-2);
+    margin: 14px 0 0;
+  }
+  .cta-btn {
+    background: var(--ink);
+    color: #fff;
+    font: 700 16px/1 var(--font-body);
+    padding: 18px 34px;
+    border-radius: var(--r-pill);
+    white-space: nowrap;
+    text-decoration: none;
+    transition: filter 0.15s ease;
+  }
+  .cta-btn:hover {
+    filter: brightness(1.25);
+  }
+
+  /* ---------- TABLET COLLAPSE (768–900px), per the handoff ---------- */
+  @media (max-width: 900px) and (min-width: 768px) {
+    .why-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 28px 24px;
+    }
+    .hero-h1 {
+      font-size: 46px;
+    }
+    /* hero collapses to one column; sun moves to the upper area */
+    .hero-grid {
+      grid-template-columns: 1fr;
+      gap: 36px;
+    }
+    .sun-glow {
+      top: -9%;
+      left: 18%;
+      width: 340px;
+      height: 340px;
+    }
+    .sun-core {
+      left: 34%;
+      top: 5%;
+      width: 128px;
+      height: 128px;
+    }
+    .sun-rays {
+      background: repeating-conic-gradient(from 130deg at 34% 5%, rgba(255, 221, 140, 0.55) 0deg 3deg, transparent 3deg 13deg);
+      -webkit-mask: radial-gradient(120% 120% at 34% 5%, #000 0%, rgba(0, 0, 0, 0.5) 28%, transparent 62%);
+      mask: radial-gradient(120% 120% at 34% 5%, #000 0%, rgba(0, 0, 0, 0.5) 28%, transparent 62%);
+      transform-origin: 34% 5%;
+    }
+    .sun-rays2 {
+      background: repeating-conic-gradient(from 133deg at 34% 5%, rgba(255, 255, 255, 0.5) 0deg 1.4deg, transparent 1.4deg 9deg);
+      -webkit-mask: radial-gradient(100% 100% at 34% 5%, #000 0%, transparent 52%);
+      mask: radial-gradient(100% 100% at 34% 5%, #000 0%, transparent 52%);
+      transform-origin: 34% 5%;
+    }
+  }
+
+  /* ---------- MOBILE (<768px) ---------- */
+  @media (max-width: 767px) {
+    .hero {
+      padding: 34px 0 40px;
+    }
+    .hero-grid {
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+    /* mobile sun */
+    .sun-glow {
+      top: -16%;
+      left: -16%;
+      width: 440px;
+      height: 440px;
+    }
+    .sun-rays {
+      background: repeating-conic-gradient(from 110deg at 14% 7%, rgba(255, 221, 140, 0.55) 0deg 3deg, transparent 3deg 13deg);
+      -webkit-mask: radial-gradient(160% 160% at 14% 7%, #000 0%, rgba(0, 0, 0, 0.5) 30%, transparent 66%);
+      mask: radial-gradient(160% 160% at 14% 7%, #000 0%, rgba(0, 0, 0, 0.5) 30%, transparent 66%);
+      transform-origin: 14% 7%;
+    }
+    .sun-rays2 {
+      background: repeating-conic-gradient(from 113deg at 14% 7%, rgba(255, 255, 255, 0.5) 0deg 1.4deg, transparent 1.4deg 9deg);
+      -webkit-mask: radial-gradient(140% 140% at 14% 7%, #000 0%, transparent 56%);
+      mask: radial-gradient(140% 140% at 14% 7%, #000 0%, transparent 56%);
+      transform-origin: 14% 7%;
+    }
+    .sun-core {
+      left: 14%;
+      top: 7%;
+      width: 150px;
+      height: 150px;
+    }
+    .eyebrow-pill {
+      padding: 6px 12px;
+      gap: 8px;
+    }
+    .eyebrow-dot {
+      width: 6px;
+      height: 6px;
+    }
+    .eyebrow-label {
+      font-size: 9.5px;
+      letter-spacing: 0.12em;
+    }
+    .hero-h1 {
+      font-size: 36px;
+      line-height: 1.06;
+      margin-top: 18px;
+    }
+    .hero-lead {
+      font-size: 15.5px;
+      line-height: 1.6;
+      margin-top: 16px;
+      max-width: none;
+    }
+    .hero-actions {
+      flex-direction: column;
+      gap: 11px;
+      margin-top: 24px;
+    }
+    .btn-accent,
+    .btn-outline {
+      padding: 16px;
+      width: 100%;
+    }
+    .hero-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px 16px;
+      margin-top: 34px;
+    }
+    /* stats become bordered white cards, centered (design update) */
+    .stat {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 18px 14px;
+      text-align: center;
+    }
+    .stat-value {
+      font-size: 28px;
+    }
+    .stat-label {
+      font-size: 12.5px;
+      margin-top: 5px;
+    }
+
+    .mosaic {
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: none;
+      gap: 12px;
+      height: auto;
+      margin-top: 26px;
+    }
+    .tile {
+      height: 130px;
+      border-radius: var(--r-card);
+      padding: 14px;
+    }
+    .tile.tile-tall {
+      grid-column: span 2;
+      grid-row: auto;
+      height: 170px;
+      padding: 16px;
+    }
+    .chip {
+      font-size: 9px;
+      letter-spacing: 0.08em;
+      padding: 5px 9px;
+      border-radius: 6px;
+    }
+    .tile-tall .chip {
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      padding: 6px 10px;
+    }
+    .aashto {
+      padding: 16px;
+    }
+    .aashto-title {
+      font-size: 12.5px;
+    }
+    .aashto-sub {
+      font-size: 11px;
+      line-height: 1.45;
+      margin-top: 6px;
+    }
+
+    .logos {
+      padding: 30px 0;
+    }
+    .logos .container {
+      gap: 22px;
+    }
+    .logos-eyebrow {
+      font-size: 10.5px;
+      letter-spacing: 0.14em;
+    }
+    .logos-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 14px 12px;
+    }
+    .logo {
+      width: 100%;
+      min-width: 0;
+      height: 54px;
+      padding: 8px;
+    }
+
+    .cats {
+      padding: 46px 0;
+    }
+    .cats-head {
+      display: block;
+      margin-bottom: 24px;
+    }
+    .cats-viewall {
+      display: none;
+    }
+    .cats-grid {
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+    .cat-card {
+      padding: 22px;
+      gap: 9px;
+    }
+    .cat-num {
+      font-size: 18px;
+    }
+    .cat-title {
+      font-size: 19px;
+    }
+    .cat-desc {
+      font-size: 14px;
+    }
+
+    .why {
+      padding: 46px 0;
+    }
+    .why-grid {
+      grid-template-columns: 1fr;
+      gap: 24px;
+      margin-top: 30px;
+    }
+    .why-item {
+      padding-top: 18px;
+    }
+    .why-title {
+      font-size: 17px;
+    }
+
+    .cta {
+      padding: 44px 0;
+    }
+    .cta-card {
+      padding: 32px 26px;
+      display: block;
+    }
+    .cta-h2 {
+      font-size: 25px;
+      line-height: 1.14;
+    }
+    .cta-sub {
+      font-size: 15px;
+      margin: 12px 0 22px;
+    }
+    .cta-btn {
+      display: block;
+      width: 100%;
+      text-align: center;
+      padding: 16px 30px;
+    }
+
+    .h2 {
+      font-size: 28px;
+      line-height: 1.1;
+    }
+  }
+</style>

@@ -1,0 +1,24 @@
+{
+  "functions": {
+    "source": "functions",
+    "runtime": "nodejs20"
+  },
+  "hosting": {
+    "site": "sunshinerubbertech",
+    "public": "dist",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "/api/inquiry",
+        "function": {
+          "functionId": "inquiry",
+          "region": "asia-southeast1"
+        }
+      }
+    ]
+  }
+}

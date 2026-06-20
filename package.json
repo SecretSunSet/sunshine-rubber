@@ -1,0 +1,28 @@
+{
+  "name": "sunshine-rubber-web",
+  "type": "module",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Marketing website for Sunshine Rubber Tech Resources, Co.",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/react": "^4.2.0",
+    "@astrojs/sitemap": "^3.2.1",
+    "astro": "^5.2.5",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.9",
+    "@types/react": "^19.0.8",
+    "@types/react-dom": "^19.0.3",
+    "firebase-tools": "^15.22.0",
+    "typescript": "^5.9.3"
+  }
+}
