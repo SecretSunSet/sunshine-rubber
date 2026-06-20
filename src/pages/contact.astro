@@ -85,9 +85,20 @@ import { contact, contactDisclaimer } from "../data/contact";
 
         <p class="info-disclaimer">{contactDisclaimer}</p>
 
-        <div class="map" role="img" aria-label="Map — Mapulang Lupa, Valenzuela City">
-          <span class="map-label">Map — Mapulang Lupa, Valenzuela City</span>
+        <div class="map">
+          <iframe
+            src="https://www.google.com/maps?q=14.697403,121.002117&z=16&output=embed"
+            title="Map showing Sunshine Rubber Tech Resources, Valenzuela City"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
         </div>
+        <a
+          class="map-link"
+          href="https://www.google.com/maps/search/?api=1&query=14.697403,121.002117"
+          target="_blank"
+          rel="noopener noreferrer"
+        >Open in Google Maps →</a>
       </div>
 
       <div class="form-col">
@@ -326,16 +337,23 @@ import { contact, contactDisclaimer } from "../data/contact";
     overflow: hidden;
     border: 1px solid var(--border);
     height: 200px;
-    background: repeating-linear-gradient(45deg, #ede8dd, #ede8dd 11px, #e6e0d4 11px, #e6e0d4 22px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    background: var(--surface);
   }
-  .map-label {
-    font: 600 11px/1 var(--font-body);
-    letter-spacing: 0.16em;
-    color: var(--muted-3);
-    text-transform: uppercase;
+  .map iframe {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+  .map-link {
+    display: inline-block;
+    margin: 12px 2px 0;
+    font: 600 13px/1.4 var(--font-body);
+    color: var(--accent);
+    text-decoration: none;
+  }
+  .map-link:hover {
+    text-decoration: underline;
   }
 
   /* ---------- MOBILE (<768px) ---------- */
@@ -393,12 +411,6 @@ import { contact, contactDisclaimer } from "../data/contact";
     .map {
       margin-top: 14px;
       height: 150px;
-    }
-    .map-label {
-      font-size: 10px;
-      letter-spacing: 0.14em;
-      text-align: center;
-      padding: 0 16px;
     }
   }
 </style>
