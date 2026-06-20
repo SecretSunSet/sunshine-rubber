@@ -271,6 +271,11 @@ import { contact, contactDisclaimer } from "../data/contact";
     grid-template-columns: 1fr 1fr;
     gap: 56px;
   }
+  /* Let grid items shrink below their content's intrinsic width so long,
+     unbreakable strings (emails/URLs) can't force horizontal overflow. */
+  .body-grid > * {
+    min-width: 0;
+  }
   .info-card {
     background: var(--surface);
     border: 1px solid var(--border);
@@ -296,16 +301,19 @@ import { contact, contactDisclaimer } from "../data/contact";
   }
   .info-2up .info-card {
     padding: 26px;
+    min-width: 0;
   }
   .info-phones {
     font: 600 16px/1.7 var(--font-body);
     color: var(--ink);
     margin: 14px 0 0;
+    overflow-wrap: anywhere;
   }
   .info-email {
     font: 500 14px/1.7 var(--font-body);
     color: var(--muted);
     margin: 10px 0 0;
+    overflow-wrap: anywhere;
   }
   .info-disclaimer {
     font: 400 12.5px/1.5 var(--font-body);

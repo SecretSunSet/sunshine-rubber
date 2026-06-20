@@ -197,7 +197,8 @@ const catHref = (filter: string) => `/products?cat=${encodeURIComponent(filter)}
 
   /* ---------- HERO ---------- */
   .hero {
-    background: var(--bg);
+    /* Warm "sunrise" banner, matching the Products hero (desktop). */
+    background: var(--hero-warm);
     padding: 76px 0 92px;
     position: relative;
     overflow: hidden;
@@ -219,35 +220,35 @@ const catHref = (filter: string) => `/products?cat=${encodeURIComponent(filter)}
     pointer-events: none;
   }
   .sun-glow {
-    top: -12%;
-    left: -3%;
+    top: -10%;
+    left: -6%;
     width: 520px;
     height: 520px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(255, 196, 74, 0.5) 0%, rgba(255, 196, 74, 0) 70%);
+    background: radial-gradient(circle, rgba(255, 196, 74, 0.55) 0%, rgba(255, 196, 74, 0) 70%);
     filter: blur(6px);
     animation: sunGlow 6s ease-in-out infinite;
   }
   .sun-rays {
     inset: 0;
-    background: repeating-conic-gradient(from 110deg at 12% 6%, rgba(255, 221, 140, 0.55) 0deg 3deg, transparent 3deg 13deg);
-    -webkit-mask: radial-gradient(120% 120% at 12% 6%, #000 0%, rgba(0, 0, 0, 0.5) 28%, transparent 62%);
-    mask: radial-gradient(120% 120% at 12% 6%, #000 0%, rgba(0, 0, 0, 0.5) 28%, transparent 62%);
+    background: repeating-conic-gradient(from 110deg at 14% 8%, rgba(255, 221, 140, 0.55) 0deg 3deg, transparent 3deg 13deg);
+    -webkit-mask: radial-gradient(120% 120% at 14% 8%, #000 0%, rgba(0, 0, 0, 0.5) 28%, transparent 62%);
+    mask: radial-gradient(120% 120% at 14% 8%, #000 0%, rgba(0, 0, 0, 0.5) 28%, transparent 62%);
     mix-blend-mode: soft-light;
-    transform-origin: 12% 6%;
+    transform-origin: 14% 8%;
     animation: sunSpin 140s linear infinite;
   }
   .sun-rays2 {
     inset: 0;
-    background: repeating-conic-gradient(from 113deg at 12% 6%, rgba(255, 255, 255, 0.5) 0deg 1.4deg, transparent 1.4deg 9deg);
-    -webkit-mask: radial-gradient(100% 100% at 12% 6%, #000 0%, transparent 52%);
-    mask: radial-gradient(100% 100% at 12% 6%, #000 0%, transparent 52%);
-    transform-origin: 12% 6%;
+    background: repeating-conic-gradient(from 113deg at 14% 8%, rgba(255, 255, 255, 0.5) 0deg 1.4deg, transparent 1.4deg 9deg);
+    -webkit-mask: radial-gradient(100% 100% at 14% 8%, #000 0%, transparent 52%);
+    mask: radial-gradient(100% 100% at 14% 8%, #000 0%, transparent 52%);
+    transform-origin: 14% 8%;
     animation: sunSpinRev 90s linear infinite;
   }
   .sun-core {
-    left: 12%;
-    top: 6%;
+    left: 14%;
+    top: 8%;
     width: 170px;
     height: 170px;
     border-radius: 50%;
@@ -539,40 +540,18 @@ const catHref = (filter: string) => `/products?cat=${encodeURIComponent(filter)}
     .hero-h1 {
       font-size: 46px;
     }
-    /* hero collapses to one column; sun moves to the upper area */
+    /* hero collapses to one column; the Products-style sun carries through */
     .hero-grid {
       grid-template-columns: 1fr;
       gap: 36px;
-    }
-    .sun-glow {
-      top: -9%;
-      left: 18%;
-      width: 340px;
-      height: 340px;
-    }
-    .sun-core {
-      left: 34%;
-      top: 5%;
-      width: 128px;
-      height: 128px;
-    }
-    .sun-rays {
-      background: repeating-conic-gradient(from 130deg at 34% 5%, rgba(255, 221, 140, 0.55) 0deg 3deg, transparent 3deg 13deg);
-      -webkit-mask: radial-gradient(120% 120% at 34% 5%, #000 0%, rgba(0, 0, 0, 0.5) 28%, transparent 62%);
-      mask: radial-gradient(120% 120% at 34% 5%, #000 0%, rgba(0, 0, 0, 0.5) 28%, transparent 62%);
-      transform-origin: 34% 5%;
-    }
-    .sun-rays2 {
-      background: repeating-conic-gradient(from 133deg at 34% 5%, rgba(255, 255, 255, 0.5) 0deg 1.4deg, transparent 1.4deg 9deg);
-      -webkit-mask: radial-gradient(100% 100% at 34% 5%, #000 0%, transparent 52%);
-      mask: radial-gradient(100% 100% at 34% 5%, #000 0%, transparent 52%);
-      transform-origin: 34% 5%;
     }
   }
 
   /* ---------- MOBILE (<768px) ---------- */
   @media (max-width: 767px) {
     .hero {
+      /* mobile keeps the flat cream background (desktop-only warm banner) */
+      background: var(--bg);
       padding: 34px 0 40px;
     }
     .hero-grid {
